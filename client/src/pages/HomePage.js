@@ -127,7 +127,7 @@ const HomePage = () => {
         width={"100%"}
       /> */}
       {/* banner image */}
-    <div id="carouselExample" className="carousel slide">
+    {/* <div id="carouselExample" className="carousel slide">
   <div className="carousel-inner">
     <div className="carousel-item">
       <img src="/images/banner11.jpg" className="d-block w-100" alt="..." />
@@ -147,7 +147,7 @@ const HomePage = () => {
     <span className="carousel-control-next-icon" aria-hidden="true" />
     <span className="visually-hidden">Next</span>
   </button>
-</div>
+</div> */}
 
  {/*   */}
 
@@ -182,8 +182,77 @@ const HomePage = () => {
             >
               RESET FILTERS
             </button>
+
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Filters
+</button>
+
           </div>
         </div>
+
+    
+
+<div className="modal  " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="staticBackdropLabel">Choose Filters</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+      </div>
+      <div className="modal-body">
+       
+      <div className="col-md-2 filters">
+          <h4 className="text-center">Filter By Category</h4>
+          <div className="d-flex flex-column">
+            {categories?.map((c) => (
+              <Checkbox
+                key={c._id}
+                onChange={(e) => handleFilter(e.target.checked, c._id)}
+              >
+                {c.name}
+              </Checkbox>
+            ))}
+          </div>
+          {/* price filter */}
+          <h4 className="text-center mt-4">Filter By Price</h4>
+          <div className="d-flex flex-column">
+            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+              {Prices?.map((p) => (
+                <div key={p._id}>
+                  <Radio value={p.array}>{p.name}</Radio>
+                </div>
+              ))}
+            </Radio.Group>
+          </div>
+          <div className="d-flex flex-column">
+            <button
+              className="btn btn-primary"
+              onClick={() => window.location.reload()}
+            >
+              RESET FILTERS
+            </button>
+
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
         <div className="cols-md-4 ">
           <h1 className="text-center">All Products</h1>
           <div className="d-flex flex-wrap">

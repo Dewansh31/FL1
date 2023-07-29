@@ -4,6 +4,10 @@
   height: 350px;
 }
 
+.card{
+  --bs-card-border-width: 0 !important;
+}
+
 .home-page h1 {
   color: rgb(15, 14, 14);
   font-family: "Playfair Display", serif;
