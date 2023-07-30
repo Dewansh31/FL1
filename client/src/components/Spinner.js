@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import './Spinner.css';
+
 const Spinner = ({path = "login"}) => {
   const [count, setCount] = useState(3);
   const navigate = useNavigate();
@@ -26,6 +28,8 @@ const Spinner = ({path = "login"}) => {
           <span className="visually-hidden">Loading...</span>
         </div>
       </div>
+   
+
     </>
   );
 };

@@ -8,6 +8,8 @@ import { useCart } from "../context/cart";
 import { toast } from "react-hot-toast";
 import "../styles/Homepage.css";
 import { AiOutlineReload } from "react-icons/ai";
+import Spinner from "../components/Spinner2";
+
 const HomePage = () => {
   const navigate = useNavigate();
   const [cart,setCart] = useCart();
@@ -118,7 +120,7 @@ const HomePage = () => {
     }
   };
   return (
-    <Layout title={"ALl Products"}>
+    <Layout title={"ALL Products"}>
       {/* banner image */}
       {/* <img
         src="/images/banner51.png"
@@ -183,17 +185,19 @@ const HomePage = () => {
               RESET FILTERS
             </button>
 
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filters</button>
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+
+            {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   Filters
-</button>
+</button> */}
 
           </div>
         </div>
 
     
 
-<div className="modal  " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
+{/* <div className="modal  " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
@@ -214,7 +218,7 @@ const HomePage = () => {
               </Checkbox>
             ))}
           </div>
-          {/* price filter */}
+    
           <h4 className="text-center mt-4">Filter By Price</h4>
           <div className="d-flex flex-column">
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
@@ -249,13 +253,35 @@ const HomePage = () => {
       </div>
     </div>
   </div>
+</div> */}
+
+
+
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p>Try scrolling the rest of the page to see this option in action.</p>
+  </div>
 </div>
+
 
 
 
         <div className="cols-md-4 ">
           <h1 className="text-center">All Products</h1>
-          <div className="d-flex flex-wrap">
+
+          {products.length === 0?
+          <>
+             <Spinner/>
+          </>
+          :
+          <>
+
+<div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" 
               // style={{ width: "18rem" }}
@@ -304,6 +330,7 @@ const HomePage = () => {
               >
                 {loading ? (
                   "Loading ..."
+                
                 ) : (
                   <>
                     {" "}
@@ -313,6 +340,12 @@ const HomePage = () => {
               </button>
             )}
           </div>
+          
+          
+          </>
+
+          }
+
         </div>
       </div>
     </Layout>

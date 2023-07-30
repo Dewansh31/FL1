@@ -1,6 +1,7 @@
 .category {
   flex-wrap: wrap;
-  margin-top: 80px !important;
+  margin-top: 120px !important;
+  margin-bottom: 80px !important;
 }
 .category .card {
   background-color: rgba(128, 128, 128, 0.097);

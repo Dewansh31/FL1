@@ -7,6 +7,7 @@ import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
+import logo from '../../photoes/logo.png'
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -37,8 +38,8 @@ const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link to="/" className="navbar-brand">
-              🛒 SuperShop
+            <Link to="/landing" className="navbar-brand">
+              <img style={{height:"70px",width:"70px"}} src={logo} />
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput/>
