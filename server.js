@@ -31,7 +31,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname,'./client/build')));
+// app.use(express.static(path.join(__dirname,'./client/build')));
 
 
 // routes
@@ -40,12 +40,15 @@ app.use('/api/v1/category',categoryRoutes);
 app.use('/api/v1/product',productRoutes);
 
 // rest api
-// app.get('/',(req,res)=>{
-//      res.send("<h1>Welcome to Ecommerce Website</h1>");
-// })
-app.get('*',function(req,res){
-      res.sendFile(path.join(__dirname,'./client/build/index.html'));
-})
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./client/build/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
 
 // port
 const PORT = process.env.PORT || 8080;
