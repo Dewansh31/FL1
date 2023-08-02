@@ -14,6 +14,7 @@ const baseURL2 = "http://localhost:8080/api/v1/category/get-category";
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
+  const [subName, setSubName] = useState("");
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(null);
   const [updatedName, setUpdatedName] = useState("");
@@ -21,11 +22,16 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+
+      console.log(name);
+      console.log(subName);
+
       const { data } = await axios.post(baseURL1, {
         name,
+        subName
       });
       if (data?.success) {
-        toast.success(`${name} is created`);
+        toast.success(`${name} is created `);
         getAllCategory();
       } else {
         toast.error(data.message);
@@ -105,7 +111,15 @@ const CreateCategory = () => {
                 handleSubmit={handleSubmit}
                 value={name}
                 setValue={setName}
+                value2={subName}
+                setValue2={setSubName}
               />
+
+          
+
+
+        <hr/>
+
             </div>
             <div className="w-75">
               <table className="table">

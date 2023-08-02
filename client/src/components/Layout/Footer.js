@@ -95,7 +95,7 @@ const Footer = () => {
                 </h5>
                 <p>
                   <a href="mailto:info@domain.com" title="glorythemes">
-                    info@domain.com
+                    artifact@gmail.com
                   </a>
                 </p>
                 <ul className="social-footer2">
@@ -165,7 +165,7 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12 text-center">
-              <p>Copyright Company Name © 2023. All rights reserved.</p>
+              <p>Copyright Artifact © 2023. All rights reserved.</p>
             </div>
           </div>
         </div>

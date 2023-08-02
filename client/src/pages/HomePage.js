@@ -9,8 +9,14 @@ import { toast } from "react-hot-toast";
 import "../styles/Homepage.css";
 import { AiOutlineReload } from "react-icons/ai";
 import Spinner from "../components/Spinner2";
+import Landing from "./Landing";
 
 const HomePage = () => {
+
+  const width = window.innerWidth;
+  // The width below which the mobile view should be rendered
+  const breakpoint = 500;
+
   const navigate = useNavigate();
   const [cart,setCart] = useCart();
   const [products, setProducts] = useState([]);
@@ -119,237 +125,493 @@ const HomePage = () => {
       console.log(error);
     }
   };
-  return (
-    <Layout title={"ALL Products"}>
-      {/* banner image */}
-      {/* <img
-        src="/images/banner51.png"
-        className="banner-img"
-        alt="bannerimage"
-        width={"100%"}
-      /> */}
-      {/* banner image */}
-    {/* <div id="carouselExample" className="carousel slide">
-  <div className="carousel-inner">
-    <div className="carousel-item">
-      <img src="/images/banner11.jpg" className="d-block w-100" alt="..." />
-    </div>
-    <div className="carousel-item active">
-      <img src="/images/banner.png" className="d-block w-100" alt="..." />
-    </div>
-    <div className="carousel-item">
-      <img src="/images/banner13.jpg" className="d-block w-100" alt="..." />
-    </div>
-  </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true" />
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true" />
-    <span className="visually-hidden">Next</span>
-  </button>
-</div> */}
-
- {/*   */}
-
-      <div className="container-fluid home-page  mt-3 d-flex flex-row">
-        <div className="col-md-2 filters">
-          <h4 className="text-center">Filter By Category</h4>
-          <div className="d-flex flex-column">
-            {categories?.map((c) => (
-              <Checkbox
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-            ))}
-          </div>
-          {/* price filter */}
-          <h4 className="text-center mt-4">Filter By Price</h4>
-          <div className="d-flex flex-column">
-            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-              {Prices?.map((p) => (
-                <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
-                </div>
-              ))}
-            </Radio.Group>
-          </div>
-          <div className="d-flex flex-column">
-            <button
-              className="btn btn-primary"
-              onClick={() => window.location.reload()}
-            >
-              RESET FILTERS
-            </button>
-
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filters</button>
-
-
-            {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Filters
-</button> */}
-
-          </div>
-        </div>
-
-    
-
-{/* <div className="modal  " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div className="modal-dialog">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="staticBackdropLabel">Choose Filters</h5>
-        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-      </div>
-      <div className="modal-body">
-       
-      <div className="col-md-2 filters">
-          <h4 className="text-center">Filter By Category</h4>
-          <div className="d-flex flex-column">
-            {categories?.map((c) => (
-              <Checkbox
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-            ))}
-          </div>
-    
-          <h4 className="text-center mt-4">Filter By Price</h4>
-          <div className="d-flex flex-column">
-            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-              {Prices?.map((p) => (
-                <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
-                </div>
-              ))}
-            </Radio.Group>
-          </div>
-          <div className="d-flex flex-column">
-            <button
-              className="btn btn-primary"
-              onClick={() => window.location.reload()}
-            >
-              RESET FILTERS
-            </button>
-
-
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button>
-
-          </div>
-        </div>
-
-
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+   if(width>breakpoint){
+    return (
+      <Layout title={"ALL Products"}>
+  
+   <Landing/>
+  
+        <div className="container-fluid home-page  mt-3 d-flex flex-row">
+  
         
-      </div>
-    </div>
-  </div>
-</div> */}
-
-
-
-
-<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <p>Try scrolling the rest of the page to see this option in action.</p>
-  </div>
-</div>
-
-
-
-
-        <div className="cols-md-4 ">
-          <h1 className="text-center">All Products</h1>
-
-          {products.length === 0?
-          <>
-             <Spinner/>
-          </>
-          :
-          <>
-
-<div className="d-flex flex-wrap">
-            {products?.map((p) => (
-              <div className="card m-2" 
-              // style={{ width: "18rem" }}
-              >
-                <img
-                  src={`/api/v1/product/product-photo/${p._id}`}
-                  className="card-img-top"
-                  alt={p.name}
-                />
-                <div className="card-body">
-                <div className="card-name-price">
-                  <h5 className="card-title">{p.name}</h5>
-                  <h5 className="card-title card-price"> Rs.{p.price}</h5>
+    
+           
+            <div className="col-md-2 filters">
+            <h4 className="text-center">Filter By Category</h4>
+            <div className="d-flex flex-column">
+              {categories?.map((c) => (
+                <Checkbox
+                  key={c._id}
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
+              ))}
+            </div>
+            {/* price filter */}
+            <h4 className="text-center mt-4">Filter By Price</h4>
+            <div className="d-flex flex-column">
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {Prices?.map((p) => (
+                  <div key={p._id}>
+                    <Radio value={p.array}>{p.name}</Radio>
                   </div>
-                  <p className="card-text">
-                    {p.description.substring(0, 30)}...
-                  </p>
-                  <div className="card-name-price">
-                  <button
-                    class="btn btn-dark ms-1"
-                    onClick={() => navigate(`/product/${p.slug}`)}
-                  >
-                    More Details
-                  </button>
-                  <button class="btn btn-primary ms-1" 
-                  onClick={()=>{
-                  setCart([...cart,p])
-                  localStorage.setItem('cart',JSON.stringify([...cart,p]))
-                  toast.success('Item Added to cart')
-                  }}>
-                  ADD TO CART
-                  </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="m-2 p-3">
-            {products && products.length < total && (
+                ))}
+              </Radio.Group>
+            </div>
+            <div className="d-flex flex-column">
               <button
-                className="btn loadmore"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
+                className="btn btn-primary"
+                onClick={() => window.location.reload()}
               >
-                {loading ? (
-                  "Loading ..."
-                
-                ) : (
-                  <>
-                    {" "}
-                    Loadmore <AiOutlineReload />
-                  </>
-                )}
+                RESET FILTERS
               </button>
-            )}
+  
+              <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filters</button>
+  
+  
+              {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Filters
+  </button> */}
+  
+            </div>
           </div>
+       
+  
+  
+  
+  
+      
+  
+  {/* <div className="modal  " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title" id="staticBackdropLabel">Choose Filters</h5>
+          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+        </div>
+        <div className="modal-body">
+         
+        <div className="col-md-2 filters">
+            <h4 className="text-center">Filter By Category</h4>
+            <div className="d-flex flex-column">
+              {categories?.map((c) => (
+                <Checkbox
+                  key={c._id}
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
+              ))}
+            </div>
+      
+            <h4 className="text-center mt-4">Filter By Price</h4>
+            <div className="d-flex flex-column">
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {Prices?.map((p) => (
+                  <div key={p._id}>
+                    <Radio value={p.array}>{p.name}</Radio>
+                  </div>
+                ))}
+              </Radio.Group>
+            </div>
+            <div className="d-flex flex-column">
+              <button
+                className="btn btn-primary"
+                onClick={() => window.location.reload()}
+              >
+                RESET FILTERS
+              </button>
+  
+  
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button>
+  
+            </div>
+          </div>
+  
+  
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           
-          
-          </>
-
-          }
-
         </div>
       </div>
-    </Layout>
-  );
+    </div>
+  </div> */}
+  
+  
+  
+  
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><span>Choose Filters</span></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+    <div className=" filters">
+            <h4 className="text-center">Filter By Category</h4>
+            <div className="d-flex flex-column">
+              {categories?.map((c) => (
+                <Checkbox
+                  key={c._id}
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
+              ))}
+            </div>
+            {/* price filter */}
+            <h4 className="text-center mt-4">Filter By Price</h4>
+            <div className="d-flex flex-column">
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {Prices?.map((p) => (
+                  <div key={p._id}>
+                    <Radio value={p.array}>{p.name}</Radio>
+                  </div>
+                ))}
+              </Radio.Group>
+            </div>
+            <div className="d-flex flex-column">
+              <button
+                className="btn btn-primary"
+                onClick={() => window.location.reload()}
+              >
+                RESET FILTERS
+              </button>
+  
+  
+            </div>
+          </div>
+    </div>
+  </div>
+  
+  
+  
+  
+          <div className="cols-md-4 ">
+            <h1 className="text-center">All Products</h1>
+  
+            {products.length === 0?
+            <>
+               <Spinner/>
+            </>
+            :
+            <>
+  
+  <div className="d-flex flex-wrap">
+              {products?.map((p) => (
+                <div className="card m-2" 
+                // style={{ width: "18rem" }}
+                >
+                  <img
+                    src={`/api/v1/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                  />
+                  <div className="card-body">
+                  <div className="card-name-price">
+                    <h5 className="card-title">{p.name}</h5>
+                    <h5 className="card-title card-price"> Rs.{p.price}</h5>
+                    </div>
+                    <p className="card-text">
+                      {p.description.substring(0, 30)}...
+                    </p>
+                    <div className="card-name-price">
+                    <button
+                      class="btn btn-dark ms-1"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
+                      More Details
+                    </button>
+                    <button class="btn btn-primary ms-1" 
+                    onClick={()=>{
+                    setCart([...cart,p])
+                    localStorage.setItem('cart',JSON.stringify([...cart,p]))
+                    toast.success('Item Added to cart')
+                    }}>
+                    ADD TO CART
+                    </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="m-2 p-3">
+              {products && products.length < total && (
+                <button
+                  className="btn loadmore"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage(page + 1);
+                  }}
+                >
+                  {loading ? (
+                    "Loading ..."
+                  
+                  ) : (
+                    <>
+                      {" "}
+                      Loadmore <AiOutlineReload />
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
+            
+            
+            </>
+  
+            }
+  
+          </div>
+        </div>
+      </Layout>
+    );
+   }else{
+    return (
+      <Layout title={"ALL Products"}>
+  
+   <Landing/>
+  
+        <div className="container-fluid home-page  mt-3 d-flex flex-row">
+  
+        
+    
+           
+            {/* <div className="col-md-2 filters">
+            <h4 className="text-center">Filter By Category</h4>
+            <div className="d-flex flex-column">
+              {categories?.map((c) => (
+                <Checkbox
+                  key={c._id}
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
+              ))}
+            </div>
+           
+            <h4 className="text-center mt-4">Filter By Price</h4>
+            <div className="d-flex flex-column">
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {Prices?.map((p) => (
+                  <div key={p._id}>
+                    <Radio value={p.array}>{p.name}</Radio>
+                  </div>
+                ))}
+              </Radio.Group>
+            </div>
+            <div className="d-flex flex-column">
+              <button
+                className="btn btn-primary"
+                onClick={() => window.location.reload()}
+              >
+                RESET FILTERS
+              </button>
+  
+              <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filters</button>
+  
+  
+    
+  
+            </div>
+          </div> */}
+       
+  
+  
+  
+  
+      
+  
+  {/* <div className="modal  " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal-dialog">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title" id="staticBackdropLabel">Choose Filters</h5>
+          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+        </div>
+        <div className="modal-body">
+         
+        <div className="col-md-2 filters">
+            <h4 className="text-center">Filter By Category</h4>
+            <div className="d-flex flex-column">
+              {categories?.map((c) => (
+                <Checkbox
+                  key={c._id}
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
+              ))}
+            </div>
+      
+            <h4 className="text-center mt-4">Filter By Price</h4>
+            <div className="d-flex flex-column">
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {Prices?.map((p) => (
+                  <div key={p._id}>
+                    <Radio value={p.array}>{p.name}</Radio>
+                  </div>
+                ))}
+              </Radio.Group>
+            </div>
+            <div className="d-flex flex-column">
+              <button
+                className="btn btn-primary"
+                onClick={() => window.location.reload()}
+              >
+                RESET FILTERS
+              </button>
+  
+  
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button>
+  
+            </div>
+          </div>
+  
+  
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div> */}
+  
+  
+  
+  
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><span>Choose Filters</span></h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+    <div className=" filters">
+            <h4 className="text-center">Filter By Category</h4>
+            <div className="d-flex flex-column">
+              {categories?.map((c) => (
+                <Checkbox
+                  key={c._id}
+                  onChange={(e) => handleFilter(e.target.checked, c._id)}
+                >
+                  {c.name}
+                </Checkbox>
+              ))}
+            </div>
+            {/* price filter */}
+            <h4 className="text-center mt-4">Filter By Price</h4>
+            <div className="d-flex flex-column">
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {Prices?.map((p) => (
+                  <div key={p._id}>
+                    <Radio value={p.array}>{p.name}</Radio>
+                  </div>
+                ))}
+              </Radio.Group>
+            </div>
+            <div className="d-flex flex-column">
+              <button
+                className="btn btn-primary"
+                onClick={() => window.location.reload()}
+              >
+                RESET FILTERS
+              </button>
+  
+  
+            </div>
+          </div>
+    </div>
+  </div>
+  
+  
+  
+  
+          <div className="cols-md-4 ">
+            <h1 className="text-center">All Products</h1>
+  
+            {products.length === 0?
+            <>
+               <Spinner/>
+            </>
+            :
+            <>
+  
+  <div className="d-flex flex-wrap">
+              {products?.map((p) => (
+                <div className="card m-2" 
+                // style={{ width: "18rem" }}
+                >
+                  <img
+                    src={`/api/v1/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                  />
+                  <div className="card-body">
+                  <div className="card-name-price">
+                    <h5 className="card-title">{p.name}</h5>
+                    <h5 className="card-title card-price"> Rs.{p.price}</h5>
+                    </div>
+                    <p className="card-text">
+                      {p.description.substring(0, 30)}...
+                    </p>
+                    <div className="card-name-price">
+                    <button
+                      class="btn btn-dark ms-1"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
+                      More Details
+                    </button>
+                    <button class="btn btn-primary ms-1" 
+                    onClick={()=>{
+                    setCart([...cart,p])
+                    localStorage.setItem('cart',JSON.stringify([...cart,p]))
+                    toast.success('Item Added to cart')
+                    }}>
+                    ADD TO CART
+                    </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="m-2 p-3">
+              {products && products.length < total && (
+                <button
+                  className="btn loadmore"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage(page + 1);
+                  }}
+                >
+                  {loading ? (
+                    "Loading ..."
+                  
+                  ) : (
+                    <>
+                      {" "}
+                      Loadmore <AiOutlineReload />
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
+            
+            
+            </>
+  
+            }
+  
+          </div>
+        </div>
+      </Layout>
+    );
+   }
 };
 
 export default HomePage;

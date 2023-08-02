@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+
+
 const categorySchema = new mongoose.Schema({
   name: {
     type: String,
@@ -10,6 +12,12 @@ const categorySchema = new mongoose.Schema({
     type: String,
     lowercase: true,
   },
+
+  subName: [
+    {
+      type: String,
+    },
+  ],
 });
 
 export default mongoose.model("Category", categorySchema);

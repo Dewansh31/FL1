@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from './../components/Layout/Layout';
 import { useParams,useNavigate } from 'react-router-dom';
 import "../styles/ProductDetailsStyles.css";
+import { Button } from 'antd';
 
 const ProductDetails = () => {
     const params = useParams();
@@ -58,8 +59,10 @@ const ProductDetails = () => {
             <h6>Description : {product.description}</h6>
             <h6>Price : {product.price}</h6>
             <h6>Category : {product?.category?.name}</h6>
-            {/* <button className='btn btn-primary ms-1'>ADD TO CART</button> */}
+            <button className='btn btn-primary ms-1' >ADD TO CART</button>
         </div>
+
+      
       </div>
       <hr/>
       <div className='row container similar-products'>

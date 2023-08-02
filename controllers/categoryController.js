@@ -2,20 +2,36 @@ import categoryModel from "../models/categoryModel.js";
 import slugify from "slugify";
 export const createCategoryController = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name ,subName } = req.body;
+
+    console.log(`${name} and ${subName}`);
+
     if (!name) {
       return res.status(401).send({ message: "Name is required" });
     }
     const existingCategory = await categoryModel.findOne({ name });
+    
     if (existingCategory) {
+
+      const documentFilter = { _id: existingCategory._id }; // Replace 'your_document_id' with the actual document's _id you want to modify
+
+      const result = await categoryModel.findByIdAndUpdate(
+        existingCategory._id,
+        { ...req.fields, $push: { subName: subName }  },
+      
+      );
+      
       return res.status(200).send({
         success: true,
-        message: "Category Already Exisits",
+        message: "Sub category Added",
       });
     }
     const category = await new categoryModel({
       name,
       slug: slugify(name),
+      subName:[subName]
+
+
     }).save();
     res.status(201).send({
       success: true,
