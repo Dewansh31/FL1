@@ -10,7 +10,9 @@ const { Option } = Select;
 const CreateProduct = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
   const [name, setName] = useState("");
+  const [subname, setsubName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
@@ -24,6 +26,7 @@ const CreateProduct = () => {
       const { data } = await axios.get("http://localhost:8080/api/v1/category/get-category");
       if (data?.success) {
         setCategories(data?.category);
+        // console.log(data?.category[0].subName);
       }
     } catch (error) {
       console.log(error);
@@ -31,9 +34,33 @@ const CreateProduct = () => {
     }
   };
 
+const fetchSubCategories = async(value,key) =>{
+
+  // console.log(value);
+  // console.log(key);
+
+  try {
+    const { data } = await axios.post("http://localhost:8080/api/v1/category/get-sub-category",key);
+    if (data?.success) {
+     
+      console.log(data.ans[0].subName);
+      const temp = data.ans[0].subName;
+      setSubCategories(temp);
+    }
+  } catch (error) {
+    console.log(error);
+    toast.error("Something wwent wrong in getting sub-catgeory");
+  }
+
+  
+}
+
   useEffect(() => {
     getAllCategory();
   }, []);
+
+
+
 
   //create product function
   const handleCreate = async (e) => {
@@ -46,6 +73,7 @@ const CreateProduct = () => {
       productData.append("quantity", quantity);
       productData.append("photo", photo);
       productData.append("category", category);
+      productData.append("subCategory", subname);
       const { data } = axios.post(
         "http://localhost:8080/api/v1/product/create-product",
         productData
@@ -78,8 +106,9 @@ const CreateProduct = () => {
                 size="large"
                 showSearch
                 className="form-select mb-3"
-                onChange={(value) => {
+                onChange={(value,key) => {
                   setCategory(value);
+                  fetchSubCategories(value,key);
                 }}
               >
                 {categories?.map((c) => (
@@ -95,21 +124,19 @@ const CreateProduct = () => {
                 size="large"
                 showSearch
                 className="form-select mb-3"
-                // onChange={(value) => {
-                //   setCategory(value);
-                // }}
+                onChange={(value) => {
+                  setsubName(value); 
+            }}
               >
+
                 
-                  <Option key="sub-category-1" value="sub-category-1">
-                    sub-category-1
+                
+            {subCategories?.map((sc) => (
+                  <Option key={subCategories.indexOf(sc)} value={sc}>
+                    {sc}
                   </Option>
-                  <Option key="sub-category-2" value="sub-category-2">
-                    sub-category-2
-                  </Option>
-                  <Option key="sub-category-3" value="sub-category-3">
-                    sub-category-3
-                  </Option>
-             
+                ))}
+                 
               </Select>
 
               <div className="mb-3">

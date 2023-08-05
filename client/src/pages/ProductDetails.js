@@ -59,6 +59,12 @@ const ProductDetails = () => {
             <h6>Description : {product.description}</h6>
             <h6>Price : {product.price}</h6>
             <h6>Category : {product?.category?.name}</h6>
+
+            {
+              product?.subCategory &&
+              <h6>subCategory : {product?.subCategory}</h6>
+            }
+            
             <button className='btn btn-primary ms-1' >ADD TO CART</button>
         </div>
 
