@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../Spinner";
 
-const baseURL = "http://localhost:8080/api/v1/auth/admin-auth";
+const baseURL = "/api/v1/auth/admin-auth";
 
 export default function AdminRoute() {
   const [ok, setOk] = useState(false);

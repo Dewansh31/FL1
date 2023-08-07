@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../Spinner";
 
-const baseURL = "http://localhost:8080/api/v1/auth/user-auth";
+const baseURL = "/api/v1/auth/user-auth";
 
 export default function PrivateRoute() {
   const [ok, setOk] = useState(false);

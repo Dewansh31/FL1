@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
 
-const baseURL = "http://localhost:8080/api/v1/auth/login";
+const baseURL = "/api/v1/auth/login";
 
 const Login = () => {
   const [email, setEmail] = useState("");

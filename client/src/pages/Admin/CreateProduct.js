@@ -23,7 +23,7 @@ const CreateProduct = () => {
   //get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/api/v1/category/get-category");
+      const { data } = await axios.get("/api/v1/category/get-category");
       if (data?.success) {
         setCategories(data?.category);
         // console.log(data?.category[0].subName);
@@ -40,7 +40,7 @@ const fetchSubCategories = async(value,key) =>{
   // console.log(key);
 
   try {
-    const { data } = await axios.post("http://localhost:8080/api/v1/category/get-sub-category",key);
+    const { data } = await axios.post("/api/v1/category/get-sub-category",key);
     if (data?.success) {
      
       console.log(data.ans[0].subName);
@@ -75,7 +75,7 @@ const fetchSubCategories = async(value,key) =>{
       productData.append("category", category);
       productData.append("subCategory", subname);
       const { data } = axios.post(
-        "http://localhost:8080/api/v1/product/create-product",
+        "/api/v1/product/create-product",
         productData
       );
       if (data?.success) {

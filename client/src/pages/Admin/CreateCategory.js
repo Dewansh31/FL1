@@ -6,10 +6,10 @@ import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm";
 import { Modal } from "antd";
 
-const baseURL1 = "http://localhost:8080/api/v1/category/create-category";
-const baseURL2 = "http://localhost:8080/api/v1/category/get-category";
-// const baseURL3 = "http://localhost:8080/api/v1/category/update-category";
-// const baseURL4 = "http://localhost:8080/api/v1/category/delete-category";
+const baseURL1 = "/api/v1/category/create-category";
+const baseURL2 = "/api/v1/category/get-category";
+// const baseURL3 = "/api/v1/category/update-category";
+// const baseURL4 = "/api/v1/category/delete-category";
 
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -64,7 +64,7 @@ const CreateCategory = () => {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `http://localhost:8080/api/v1/category/update-category/${selected._id}`,
+        `/api/v1/category/update-category/${selected._id}`,
         { name: updatedName }
       );
       if (data.success) {
@@ -84,7 +84,7 @@ const CreateCategory = () => {
   const handleDelete = async (pId) => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:8080/api/v1/category/delete-category/${pId}`
+        `/api/v1/category/delete-category/${pId}`
       );
       if (data.success) {
         toast.success(`category is deleted`);

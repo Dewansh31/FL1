@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 
-const baseURL = "http://localhost:8080/api/v1/auth/forgot-password";
+const baseURL = "/api/v1/auth/forgot-password";
 
 const ForgotPasssword = () => {
   const [email, setEmail] = useState("");

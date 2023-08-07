@@ -45,7 +45,7 @@ const CartPage = () => {
   const getToken = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8080/api/v1/product/braintree/token"
+        "/api/v1/product/braintree/token"
       );
       setClientToken(data?.clientToken);
     } catch (error) {
@@ -63,7 +63,7 @@ const CartPage = () => {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/product/braintree/payment",
+        "/api/v1/product/braintree/payment",
         {
           nonce,
           cart,
