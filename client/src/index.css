@@ -159,7 +159,7 @@
     position:relative;
     z-index:4;
     font-family: "Poppins", sans-serif;
-    font-size: 15px;
+    font-size: 17px;
     /* line-height: 26px; */
     text-transform: uppercase;
     list-style: none;
@@ -302,19 +302,23 @@ ul.menuH ul
 
 .menuH ul 
 {
-    -moz-border-radius: 0px 0px 4px 4px;
-    -webkit-border-radius: 0px 0px 4px 4px;
-    border-radius: 0px 0px 4px 4px;
+    /* -moz-border-radius: 0px 0px 4px 4px;
+    -webkit-border-radius: 0px 0px 4px 4px; */
+    border-radius: 5px 5px 5px 5px;
+    border-left: 1px solid #DDD;
+    border-top: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
 
-    -moz-box-shadow: 0px 6px 6px #CCC;
-    -webkit-box-shadow: 0px 6px 6px #CCC;
-    box-shadow: 0px 6px 6px #CCC;  
+    /* -moz-box-shadow: 0px 6px 6px #CCC; */
+    /* -webkit-box-shadow: 0px 6px 6px #CCC; */
+    /* box-shadow: 0px 6px 6px #CCC;   */
     
    
-    filter:alpha(opacity=90);
-    opacity: 0.90;  
+   
             
     /* Gradient background */
-    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE);
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEEEEE)); 
+    /* background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE); */
+    /* background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEEEEE));  */
+    background: #FFFFFF;
 }

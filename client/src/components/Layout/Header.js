@@ -158,6 +158,13 @@ const Header = () => {
                   </li>
                 </>
               )}
+
+           <li className="nav-item nv">
+                    <NavLink to="/contact" className="nav-link">
+                      Contact 
+                    </NavLink>
+                  </li>
+
                 <li className="nav-item">
                 <NavLink to="/cart" className="nav-link">
                   <Badge count={cart?.length} showZero offset={[10, -5]}>

@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Layout from './../components/Layout/Layout';
 import { useParams,useNavigate } from 'react-router-dom';
 import "../styles/ProductDetailsStyles.css";
-import { Button } from 'antd';
+// import { Button } from 'antd';
+import ReactImageMagnify from 'react-image-magnify';
 
 const ProductDetails = () => {
     const params = useParams();
@@ -44,14 +45,31 @@ const ProductDetails = () => {
         {/* <h1>Product Details</h1> */}
       <div className='row container product-details'>
         <div className='col-md-6'>
-        <img
+
+
+        <ReactImageMagnify {...{
+    smallImage: {
+        alt: `product.name`,
+        // isFluidWidth: true,
+        src: `/api/v1/product/product-photo/${product._id}`,
+        width: 350,
+        height: 500
+    },
+    largeImage: {
+        src: `/api/v1/product/product-photo/${product._id}`,
+        width: 1200,
+        height: 1800
+    }
+}} />
+
+        {/* <img
                     src={`/api/v1/product/product-photo/${product._id}`}
                     className="card-img-top"
                     alt={product.name}
                     height="500"
                     width={"350px"}
 
-                  />
+                  /> */}
         </div>
         <div className='col-md-6 product-details-info'>
             <h1 className='text-center'>Product Details</h1>
