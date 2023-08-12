@@ -63,7 +63,7 @@ const Tutorials = () => {
  
            <iframe height="200" width="auto"  className="card-img-top" src={doc?.name} title="YouTube video player" frameborder="0" allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           <div className="card-img-overlay">
-            {/* <h5 className="card-title">Card title</h5> */}
+   
 
             <p className="card-text">Created @ {doc?.createdAt}</p>
           </div>
