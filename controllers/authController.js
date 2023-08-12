@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js";
 import orderModel from "../models/orderModel.js";
 import { comparePassword, hashPassword } from "./../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
+import tutorialModel from "../models/tutorialModel.js";
 
 export const registerController = async (req, res) => {
   try {
@@ -115,6 +116,64 @@ export const loginController = async (req, res) => {
     });
   }
 };
+
+export const tutorialController = async (req, res) =>{
+
+  try {
+    const { name } = req.body;
+    // validations
+    if (!name) {
+      return res.send({ message: "Link is Required" });
+    }
+  
+     console.log(name);
+
+    //save
+    const video = await new tutorialModel({
+      name,
+    }).save();
+
+    res.status(201).send({
+      success: true,
+      message: "Tutorial uploaded Successfully!",
+      video,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Upload failed!",
+      error,
+    });
+  }
+
+}
+
+export const gettutorialController = async(req,res) =>{
+
+  console.log("request agaya");
+
+  try {
+    const vds = await tutorialModel
+      .find({})
+    res.status(200).send({
+      success: true,
+      message: "All Tutorials! ",
+      vds,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Erorr in getting tutorials!",
+      error: error.message,
+    });
+  }
+
+  console.log("response chala gaya agaya");
+
+
+}
 
 // forgotPasswordController
 export const forgotPasswordController = async (req, res) => {

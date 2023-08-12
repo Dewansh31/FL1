@@ -1,8 +1,26 @@
-import React from "react";
+import React , { useRef } from "react";
 import Layout from "./../components/Layout/Layout";
 // import { BiMailSend, BiPhoneCall, BiSupport } from "react-icons/bi";
+import emailjs from '@emailjs/browser';
 import "../styles/Contact.css";
+import { toast } from "react-hot-toast";
 const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_rcjdn39', 'template_vpjo9wi', form.current, 'A03lDvvoTStlqxznW')
+      .then((result) => {
+          console.log(result.text);
+          // console.log("message send successfull")
+          toast.success('Message sent successfully!');
+      }, (error) => {
+          console.log(error.text);
+          toast.error('Something went wrong!');
+      });
+  };
+  
   return (
     <Layout title={"Contact us"}>
       <div className="container1">
@@ -19,15 +37,18 @@ const Contact = () => {
           </div>
           <div className="right1">
             <h2>Contact Us</h2>
-            <input type="text" className="field" placeholder="Your Name" />
-            <input type="text" className="field" placeholder="Your Email" />
-            <input type="text" className="field" placeholder="Phone" />
+            <form ref={form} onSubmit={sendEmail}>
+            <input type="text" className="field" placeholder="Your Name" name="user_name"/>
+            <input type="text" className="field" placeholder="Your Email" name="user_email"  />
+            <input type="text" className="field" placeholder="Phone" name="user_phone" />
             <textarea
               placeholder="Message"
               className="field"
-              defaultValue={""}
+              name="message" 
             />
-            <button className="btn1">Send</button>
+            <button className="btn1" type="submit" value="Send">Send</button>
+            </form>
+           
           </div>
         </div>
       </div>

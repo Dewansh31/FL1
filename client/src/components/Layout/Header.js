@@ -24,7 +24,11 @@ const Header = () => {
   };
   return (
     <>
-       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+            fdsfsfs
+        </div>
+
+       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" >
   <div className="container-fluid">
     {/* <a className="navbar-brand fw-bold" href="#">Coding Yaar</a> */}
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +98,7 @@ const Header = () => {
 <li><Link to={`/category/${c.slug}`} className="arrow">{c.name}</Link>
 <ul>
      {c.subName?.map((sn)=>(
-         <li><a href="#">{sn}</a></li>
+         <li> <Link to={`/category/${sn}`} className="arrow">{sn}</Link> </li>
      ))
 
      }
@@ -158,6 +162,13 @@ const Header = () => {
                   </li>
                 </>
               )}
+
+<li className="nav-item nv">
+                    <NavLink to="/tutorials" className="nav-link">
+                      Tutorials
+                    </NavLink>
+                  </li>
+
 
            <li className="nav-item nv">
                     <NavLink to="/contact" className="nav-link">

@@ -17,7 +17,7 @@ export const createCategoryController = async (req, res) => {
 
       const result = await categoryModel.findByIdAndUpdate(
         existingCategory._id,
-        { ...req.fields, $push: { subName: subName }  },
+        { ...req.fields, $push: { subName: slugify(subName) }  },
       
       );
       
@@ -29,7 +29,7 @@ export const createCategoryController = async (req, res) => {
     const category = await new categoryModel({
       name,
       slug: slugify(name),
-      subName:[subName]
+      subName:[slugify(subName)]
 
 
     }).save();
@@ -92,7 +92,7 @@ export const categoryControlller = async (req, res) => {
   }
 };
 
-// get all cat
+// get all subcat
 export const subCategoryControlller = async (req, res) => {
   try {
 
@@ -133,6 +133,32 @@ export const singleCategoryController = async (req, res) => {
     });
   }
 };
+
+// single category
+export const singleCategoryWithSubCategoryController = async (req, res) => {
+
+  console.log(req.params.slug);
+  console.log(req.params.sn);
+
+  try {
+    const category = await categoryModel.findOne({ slug: req.params.slug ,"subName.name" :req.params.sn }  );
+
+    console.log(category);
+    res.status(200).send({
+      success: true,
+      message: "Get Single Category SUccessfully",
+      category,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error While getting Single Category",
+    });
+  }
+};
+
 
 //delete category
 export const deleteCategoryController = async (req, res) => {

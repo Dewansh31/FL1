@@ -4,10 +4,10 @@ import ".././styles/Carosal.css"
 const Carosal = () => {
   return (
 <div>
-  <header>
+  {/* <header>
     <nav className="navbar navbar-default navbar-fixed-top navbar-inverse">
       <div className="container-fluid">
-        {/* Brand and toggle get grouped for better mobile display */}
+       
         <div className="navbar-header">
           <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span className="sr-only">Toggle navigation</span>
@@ -17,7 +17,7 @@ const Carosal = () => {
           </button>
           <a className="navbar-brand" href="#">Brand</a>
         </div>
-        {/* Collect the nav links, forms, and other content for toggling */}
+      
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav">
             <li className="active"><a href="#">Link <span className="sr-only">(current)</span></a></li>
@@ -48,17 +48,17 @@ const Carosal = () => {
               </ul>
             </li>
           </ul>
-        </div>{/* /.navbar-collapse */}
-      </div>{/* /.container-fluid */}
+        </div>
+      </div>
     </nav>
     <div id="carousel-example-generic" className="carousel slide" data-ride="carousel">
-      {/* Indicators */}
+
       <ol className="carousel-indicators">
         <li data-target="#carousel-example-generic" data-slide-to={0} className="active" />
         <li data-target="#carousel-example-generic" data-slide-to={1} />
         <li data-target="#carousel-example-generic" data-slide-to={2} />
       </ol>
-      {/* Wrapper for slides */}
+   
       <div className="carousel-inner" role="listbox">
         <div className="item active">
           <img src="https://i.postimg.cc/wTBDN2JW/1.jpg" alt="..." />
@@ -82,7 +82,7 @@ const Carosal = () => {
           </div>
         </div>
       </div>
-      {/* Controls */}
+     
       <a className="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
         <span className="glyphicon glyphicon-chevron-left" aria-hidden="true" />
         <span className="sr-only">Previous</span>
@@ -92,8 +92,36 @@ const Carosal = () => {
         <span className="sr-only">Next</span>
       </a>
     </div>
-  </header>
-  {/*- ignore the code below*/}
+  </header> */}
+
+<div id="myCarousel" className="carousel slide" data-ride="carousel">
+  <ol className="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to={0} className="active" />
+    <li data-target="#myCarousel" data-slide-to={1} />
+    <li data-target="#myCarousel" data-slide-to={2} />
+  </ol>
+  <div className="carousel-inner">
+    <div className="item active">
+      <img src="https://www.w3schools.com/bootstrap/la.jpg" alt="Los Angeles" />
+    </div>
+    <div className="item">
+      <img src="https://www.w3schools.com/bootstrap/chicago.jpg" alt="Chicago" />
+    </div>
+    <div className="item">
+      <img src="https://www.w3schools.com/bootstrap/ny.jpg" alt="New york" />
+    </div>
+  </div>
+  <a className="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span className="glyphicon glyphicon-chevron-left" />
+    <span className="sr-only">Previous</span>
+  </a>
+  <a className="right carousel-control" href="#myCarousel" data-slide="next">
+    <span className="glyphicon glyphicon-chevron-right" />
+    <span className="sr-only">Next</span>
+  </a>
+</div>
+
+ 
   <div className="link-area">
     <a href="https://www.youtube.com/channel/UCki4IDK86E6_pDtptmsslow" target="_blank">Click for More</a>
   </div>

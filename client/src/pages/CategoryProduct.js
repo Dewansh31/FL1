@@ -3,6 +3,7 @@ import Layout from "../components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/CategoryProductStyles.css";
+// import "../styles/Homepage.css";
 const CategoryProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
@@ -10,8 +11,10 @@ const CategoryProduct = () => {
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
-    if (params?.slug) getPrductsByCat();
-  }, [params?.slug]);
+    if (params?.sn) getPrductsByCatSubCat();
+    else if (params?.slug) getPrductsByCat();
+  }, [params?.slug,params?.slug?.sn]);
+
   const getPrductsByCat = async () => {
     try {
       const { data } = await axios.get(
@@ -24,13 +27,28 @@ const CategoryProduct = () => {
     }
   };
 
+  const getPrductsByCatSubCat = async () => {
+    try {
+      console.log(params.sn);
+      const { data } = await axios.get(
+        `/api/v1/product/product-category/${params.sn}`
+      );
+      setProducts(data?.products);
+      setCategory(data?.category);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Layout>
-      <div className="container mt-3 category">
+      <div className="container category d-flex flex-wrap  justify-content-center">
+        <div className="d-flex flex-column">
         <h4 className="text-center">Category - {category?.name}</h4>
         <h6 className="text-center">{products?.length} result found </h6>
+
+        </div>
         <div className="row">
-          <div className="col-md-9 offset-1">
+          <div className="card m-2 col-xs-2">
             <div className="d-flex flex-wrap">
               {products?.map((p) => (
                 <div
@@ -51,7 +69,9 @@ const CategoryProduct = () => {
                     <p className="card-text">
                       {p.description.substring(0, 30)}...
                     </p>
-                    <div className="card-name-price"> 
+                    
+                  </div>
+                  <div className="card-name-price"> 
                     <button
                       className="btn btn-dark ms-1"
                       onClick={() => navigate(`/product/${p.slug}`)}
@@ -61,7 +81,6 @@ const CategoryProduct = () => {
                     {/* <button className="btn btn-primary ms-1">
                       Add To Cart
                     </button> */}
-                  </div>
                   </div>
                 </div>
               ))}

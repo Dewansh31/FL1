@@ -6,7 +6,8 @@ import {
   createCategoryController,
   updateCategoryController,
   singleCategoryController,
-  deleteCategoryController
+  deleteCategoryController,
+  singleCategoryWithSubCategoryController
 } from "./../controllers/categoryController.js";
 
 const router = express.Router();
@@ -36,6 +37,9 @@ router.post("/get-sub-category", subCategoryControlller);
 
 // //single category
 router.get("/single-category/:slug", singleCategoryController);
+
+// //single category
+router.get("/single-category/:slug/:sn", singleCategoryWithSubCategoryController);
 
 // //delete category
 router.delete(

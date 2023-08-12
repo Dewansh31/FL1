@@ -25,16 +25,19 @@ import CategoryProduct from "./pages/CategoryProduct";
 import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
 import Landing from "./pages/Landing";
+import Tutorials from "./pages/Tutorials";
+import UploadTutorials from "./pages/Admin/UploadTutorials";
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/landing" element={<Landing />} /> */}
+        <Route path="/landing" element={<HomePage />} />
         <Route path="/product/:slug" element={<ProductDetails/>} />
         <Route path="/categories" element={<Categories/>} />
         <Route path="/cart" element={<CartPage/>} />
         <Route path="/category/:slug" element={<CategoryProduct/>} />
+        <Route path="/category/:sn" element={<CategoryProduct/>} />
         <Route path="/search" element={<Search/>} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
@@ -49,11 +52,14 @@ function App() {
           <Route path="admin/products" element={<Products/>} />
           <Route path="admin/users" element={<Users/>} />
           <Route path="admin/orders" element={<AdminOrders/>} />
+          <Route path="admin/upload-tutorials" element={<UploadTutorials/>} />
+
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
+        <Route path="/tutorials" element={<Tutorials />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/policy" element={<Policy />} />
         <Route path="*" element={<Pagenotfound />} />

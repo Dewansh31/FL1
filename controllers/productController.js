@@ -6,7 +6,10 @@ import orderModel from "../models/orderModel.js";
 import braintree from "braintree";
 import dotenv from 'dotenv'
 
+
 dotenv.config();
+
+
 
 
 //payment gateway
@@ -326,6 +329,35 @@ export const productCategoryController = async(req,res) => {
   }
 }
 
+// get product category by catergory
+export const productsubCategoryController = async(req,res) => {
+
+  console.log("request aa gaya");
+
+  try {
+
+
+    const category = await categoryModel.findOne({
+      subName:{ $in : [req.params.sn] }
+    })
+    const products = await productModel.find({  subCategory:"C-and-D" }).populate('category')
+    console.log(products);
+    res.status(200).send({
+      success: true,
+      category,
+      products,
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success:false,
+      error,
+      message: 'Error while getting products'
+    })
+  }
+}
+
+
 // payment gateway api
 // token
 export const braintreeTokenController = async (req, res) => {
@@ -375,3 +407,6 @@ export const brainTreePaymentController = async (req, res) => {
     console.log(error);
   }
 };
+
+
+

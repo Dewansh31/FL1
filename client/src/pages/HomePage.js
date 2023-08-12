@@ -132,7 +132,7 @@ const HomePage = () => {
   
    <Landing/>
   
-        <div className="container-fluid home-page mt-1 ">
+        <div className="container home-page mt-1 ">
   
         
     
@@ -301,9 +301,9 @@ const HomePage = () => {
             :
             <>
   
-  <div className="d-flex flex-wrap ">
+  <div className="d-flex flex-wrap m-auto justify-content-center ">
               {products?.map((p) => (
-                <div className="card m-1 col-xs-2" 
+                <div className="card m-2 col-xs-2" 
                 // style={{ width: "18rem" }}
                 >
                   <img
@@ -319,9 +319,12 @@ const HomePage = () => {
                     <p className="card-text">
                       {p.description.substring(0, 30)}...
                     </p>
-                    <div className="card-name-price">
+                   
+                  </div>
+                  <div className="card-name-price" >
                     <button
-                      class="btn btn-dark ms-1"
+                   
+                      class="btn btn-dark ms-1 "
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
                       More Details
@@ -335,7 +338,6 @@ const HomePage = () => {
                     ADD TO CART
                     </button>
                     </div>
-                  </div>
                 </div>
               ))}
             </div>

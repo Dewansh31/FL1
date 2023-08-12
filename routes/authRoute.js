@@ -8,6 +8,8 @@ import {
   getOrdersController,
   getAllOrdersController,
   orderStatusController,
+  tutorialController,
+  gettutorialController,
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -20,6 +22,12 @@ router.post("/register", registerController);
 
 // login
 router.post("/login", loginController);
+
+// upload tutorial
+router.post("/tutorial", tutorialController);
+
+// get tutorial
+router.get("/gettutorial", gettutorialController);
 
 // Forgot password || post
 router.post("/forgot-password", forgotPasswordController);

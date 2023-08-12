@@ -43,7 +43,7 @@ const ProductDetails = () => {
   return (
     <Layout>
         {/* <h1>Product Details</h1> */}
-      <div className='row container product-details'>
+      <div className='row container product-details  m-5'>
         <div className='col-md-6'>
 
 
@@ -53,14 +53,14 @@ const ProductDetails = () => {
         // isFluidWidth: true,
         src: `/api/v1/product/product-photo/${product._id}`,
         width: 350,
-        height: 500
+        height: 350
     },
     largeImage: {
         src: `/api/v1/product/product-photo/${product._id}`,
         width: 1200,
         height: 1800
     }
-}} />
+}} className=' card-img-top' style={{borderRadius:"5px"}} />
 
         {/* <img
                     src={`/api/v1/product/product-photo/${product._id}`}
@@ -109,7 +109,9 @@ const ProductDetails = () => {
                   <p className="card-text">
                     {p.description.substring(0, 60)}...
                   </p>
-                  <div className="card-name-price">
+               
+              </div>
+              <div className="card-name-price">
                   <button
                     className="btn btn-dark ms-1"
                     onClick={() => navigate(`/product/${p.slug}`)}
@@ -130,7 +132,6 @@ const ProductDetails = () => {
                   ADD TO CART
                 </button> */}
                 </div>
-              </div>
             </div>
             ))}
           </div>

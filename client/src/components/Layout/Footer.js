@@ -81,8 +81,7 @@ const Footer = () => {
                   <span />
                 </h5>
                 <p>
-                  GU-56, 1st Floor, Someshwar Square, Near Someshwar Circle,
-                  Vesu, Surat, Gujarat, India - 395007.
+                Call : +91 8817909028
                 </p>
                 {/* <a className="btn" href="https://bit.ly/3m9avif" target="_blank">Send us an email</a> */}
               </div>
@@ -94,8 +93,8 @@ const Footer = () => {
                   <span />
                 </h5>
                 <p>
-                  <a href="mailto:info@domain.com" title="glorythemes">
-                    artifact@gmail.com
+                  <a href="mailto:info.artefactindia@gmail.com" title="glorythemes">
+                  info.artefactindia@gmail.com
                   </a>
                 </p>
                 <ul className="social-footer2">
@@ -103,7 +102,7 @@ const Footer = () => {
                     <a
                       title="youtube"
                       target="_blank"
-                      href=""
+                      href="https://www.youtube.com/@Artefact-India"
                     >
                       <img
                         alt="youtube"
@@ -145,7 +144,7 @@ const Footer = () => {
                     <a
                       title="instagram"
                       target="_blank"
-                      href=""
+                      href="https://www.instagram.com/artefact_india_/"
                     >
                       <img
                         alt="instagram"
