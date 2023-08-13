@@ -37,7 +37,7 @@ const Tutorials = () => {
     <Layout title={"Tutorials"}>
 
 
-    <div style={{ marginTop: "150px" }}>
+    <div style={{ marginTop: "20px" }}>
 
     <h1 className="text-center">Tutorials & Workshops</h1>
     <div className="container  mb-3" >

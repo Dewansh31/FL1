@@ -292,7 +292,28 @@ const HomePage = () => {
           <div className="row justify-content-center" 
           // style={{marginLeft:"9.5rem"}}
           >
-          <h1 className="text-center">All Products</h1>
+
+<div class="container text-center">
+
+ 
+  <div class="row">
+    <div class="col-10"> <h1 className="" style={{marginLeft:"auto"}}>All Products</h1></div>
+    <div class="col-2"><button tooltip="Filters"  class="btn " height="0px" width="0px"type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+         {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+  <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+</svg> */}
+
+<svg tooltip="Filters" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-filter-square" viewBox="0 0 16 16">
+  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+  <path d="M6 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+</svg>
+         </button></div>
+  </div>
+</div>
+
+
+            
+         
   
             {products.length === 0?
             <>
@@ -301,10 +322,10 @@ const HomePage = () => {
             :
             <>
   
-  <div className="d-flex flex-wrap m-auto justify-content-center ">
+  <div className="cnt d-flex flex-wrap m-auto justify-content-center  ">
               {products?.map((p) => (
                 <div className="card m-2 col-xs-2" 
-                // style={{ width: "18rem" }}
+                // style ={{ width: "18rem" }}
                 >
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
@@ -321,15 +342,17 @@ const HomePage = () => {
                     </p>
                    
                   </div>
-                  <div className="card-name-price" >
+                  <div className="card-name-price mb-2" >
                     <button
                    
                       class="btn btn-dark ms-1 "
+                      style={{marginLeft:"2px"}}
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
                       More Details
                     </button>
                     <button class="btn btn-primary ms-1" 
+                     style={{marginRight:"4px"}}
                     onClick={()=>{
                     setCart([...cart,p])
                     localStorage.setItem('cart',JSON.stringify([...cart,p]))
@@ -373,12 +396,12 @@ const HomePage = () => {
 
         <Container>
             
-         <button tooltip="Filters"  class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
-  <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-</svg>
-         </button>
+      
           
+          
+          <div class="arrow1">
+         <a href="#" title="Back to Top"><span class="fas fa-angle-up"></span></a>
+      </div>
         </Container>
 
       </Layout>

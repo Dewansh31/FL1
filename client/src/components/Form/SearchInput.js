@@ -2,16 +2,26 @@ import React from "react";
 import { useSearch } from "../../context/search";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 const SearchInput = () => {
   const [values, setValues] = useSearch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(!values){
+      toast.error('Enter something to search!');
+      navigate("/search");
+     
+    }
+
     try {
       const { data } = await axios.get(
         `/api/v1/product/search/${values.keyword}`
       );
+
+      
       setValues({ ...values, results: data });
       navigate("/search");
     } catch (error) {

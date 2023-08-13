@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Layout from './../components/Layout/Layout';
-import { useParams,useNavigate } from 'react-router-dom';
+import { useParams,useNavigate, Link } from 'react-router-dom';
 import "../styles/ProductDetailsStyles.css";
-// import { Button } from 'antd';
+import { useCart } from "../context/cart";
+import { toast } from "react-hot-toast";
 import ReactImageMagnify from 'react-image-magnify';
 
 const ProductDetails = () => {
@@ -11,6 +12,7 @@ const ProductDetails = () => {
     const navigate = useNavigate();
     const [product,setProduct] = useState({});
     const [relatedProducts,setRelatedProducts] = useState([]);
+    const [cart,setCart] = useCart();
 
     // initial product details
     useEffect(()=>{
@@ -40,20 +42,28 @@ const ProductDetails = () => {
         }
     }
 
+    const handleBuy = () => {
+      setCart([...cart,product])
+      localStorage.setItem('cart',JSON.stringify([...cart,product]))
+      
+      toast.success('Item Added to cart')
+      navigate('/cart')
+    }
+
   return (
     <Layout>
         {/* <h1>Product Details</h1> */}
-      <div className='row container product-details  m-5'>
+      <div className='row container product-details  '>
         <div className='col-md-6'>
 
 
         <ReactImageMagnify {...{
     smallImage: {
         alt: `product.name`,
-        // isFluidWidth: true,
+        isFluidWidth: true,
         src: `/api/v1/product/product-photo/${product._id}`,
-        width: 350,
-        height: 350
+        width: 300,
+        height: 300
     },
     largeImage: {
         src: `/api/v1/product/product-photo/${product._id}`,
@@ -83,7 +93,18 @@ const ProductDetails = () => {
               <h6>subCategory : {product?.subCategory}</h6>
             }
             
-            <button className='btn btn-primary ms-1' >ADD TO CART</button>
+            <button className='btn btn-primary ms-1'
+              onClick={()=>{
+                setCart([...cart,product])
+                localStorage.setItem('cart',JSON.stringify([...cart,product]))
+                toast.success('Item Added to cart')
+                }}>
+            
+            ADD TO CART</button>
+
+            <button className='btn btn-warning ms-1'
+              onClick={handleBuy}>Buy Now</button>
+       
         </div>
 
       
@@ -111,7 +132,7 @@ const ProductDetails = () => {
                   </p>
                
               </div>
-              <div className="card-name-price">
+              <div className="card-name-price mb-2">
                   <button
                     className="btn btn-dark ms-1"
                     onClick={() => navigate(`/product/${p.slug}`)}

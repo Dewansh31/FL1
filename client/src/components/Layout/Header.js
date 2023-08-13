@@ -24,8 +24,88 @@ const Header = () => {
   };
   return (
     <>
+    <h6 style={{textAlign:"center",background:"black",color:"white",padding:"4px"}}>Free shipping for orders over ₹ 5,000.00</h6>
+  <div className="top-navbar">
+    <p>WELCOME TO OUR SHOP</p>
+    <div className="icons mt-2" >
+
+    {!auth.user ? (
+                <>
+                    <button type="button" className="btn btn-warning"><NavLink to="/login" className="nav-link btn btn-warning">
+                      Login
+                    </NavLink></button> &nbsp;
+      <button type="button" className="btn btn-warning"><NavLink to="/register" className="nav-link btn btn-warning">
+                      Register
+                    </NavLink></button> &nbsp;
+                </>
+              ):(
+                <>
+
+<div class="btn-group dropstart">
+  <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+  {auth?.user?.name}
+  </button>
+  <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+    <li><NavLink
+                        to={`/dashboard/${
+                          auth?.user?.role === 1 ? "admin" : "user"
+                        }`}
+                        className="dropdown-item"
+                      >
+                        Dashboard
+                      </NavLink></li>
+    <li><NavLink
+                        onClick={handleLogout}
+                        to="/login"
+                        className="dropdown-item"
+                      >
+                        Logout
+                      </NavLink></li>
+   
+
+  </ul>
+</div>
+                {/* <li className="nav-item dropdown nv">
+                  <NavLink
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {auth?.user?.name}
+                  </NavLink>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <NavLink
+                        to={`/dashboard/${
+                          auth?.user?.role === 1 ? "admin" : "user"
+                        }`}
+                        className="dropdown-item"
+                      >
+                        Dashboard
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        onClick={handleLogout}
+                        to="/login"
+                        className="dropdown-item"
+                      >
+                        Logout
+                      </NavLink>
+                    </li>
+                  </ul>
+                </li> */}
+              </>
+              ) }
+
+    
+    </div>
+  </div>
+
        
-       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" >
+       <nav className="navbar navbar-expand-lg bg-body-tertiary " >
   <div className="container-fluid">
     {/* <a className="navbar-brand fw-bold" href="#">Coding Yaar</a> */}
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +161,7 @@ const Header = () => {
         </li> */}
 
 <ul className="menuH">
-  <li><a href="#" className="arrow"> Category</a>
+  <li><a href="#" className="arrow"> All Products</a>
     <ul>
     <li>
                     <Link className="dropdown-item" to={"/categories"}>
@@ -94,6 +174,11 @@ const Header = () => {
 
 <li><Link to={`/category/${c.slug}`} className="arrow">{c.name}</Link>
 <ul>
+    
+    {c.subName.length === 0 && <li> <Link to={`/`} className="arrow">No sub-category</Link> </li>
+
+    }
+
      {c.subName?.map((sn)=>(
          <li> <Link to={`/category/code/${c.slug}/${sn}`} className="arrow">{sn}</Link> </li>
      ))
@@ -112,7 +197,7 @@ const Header = () => {
 
  {!auth.user ? (
                 <>
-                  <li className="nav-item nv">
+                  {/* <li className="nav-item nv">
                     <NavLink to="/register" className="nav-link">
                       Register
                     </NavLink>
@@ -121,11 +206,11 @@ const Header = () => {
                     <NavLink to="/login" className="nav-link">
                       Login
                     </NavLink>
-                  </li>
+                  </li> */}
                 </>
               ) : (
                 <>
-                  <li className="nav-item dropdown nv">
+                  {/* <li className="nav-item dropdown nv">
                     <NavLink
                       className="nav-link dropdown-toggle"
                       href="#"
@@ -156,7 +241,7 @@ const Header = () => {
                         </NavLink>
                       </li>
                     </ul>
-                  </li>
+                  </li> */}
                 </>
               )}
 

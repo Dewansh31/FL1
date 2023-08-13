@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Josefine Sans',sans-serif;
+  font-size: 15px;
 }
 
 /* font-family: 'Poppins', sans-serif; */
@@ -15,10 +17,14 @@
   font-size: 17px;
   line-height: 26px;
   text-transform: uppercase;
-  /* box-shadow: 0 8px 6px -6px gray;
-  --webkit-box-shadow: 0 8px 6px -6px gray;
-  border-bottom: solid gray !important; */
-  margin-bottom: 5%;
+  /* background:  rgb(67 0 86) !important; */
+  /* box-shadow: 0 8px 6px -6px gray;*/
+  --webkit-box-shadow: 0 8px 6px -6px rgba(144, 133, 133, 0.912);
+  /* border-bottom: solid gray !important;  */
+  /* margin-bottom: 5%; */
+  position:sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .nav-link {
@@ -26,9 +32,12 @@
 }
 
 .active {
-  border-bottom: 2px solid black;
+  color: red !important;
 }
 
+.nav-item .nav-link:hover{
+  color: red !important;
+}
 .navbar-brand {
   font-weight: 700;
   font-family: "roboto", sans-serif;
@@ -230,7 +239,7 @@ ul.menuH a
         
 ul.menuH ul
 {
-    width:200px;
+    width:230px;
     position: absolute;
     left: -9999px;
     /* border: 1px solid #DDD; */
@@ -240,6 +249,7 @@ ul.menuH ul
     list-style: none; margin: 0;  
     /*Following 1px(padding-right) will determine how much it is overlapped by the sub-sub-menu */
     padding: 0 1px 10px 0;   
+    margin-left: 17px;
 }
 
 .menuH li li
@@ -250,7 +260,8 @@ ul.menuH ul
 }
 .menuH li li:hover, .menuH li li.onhover
 {
-    background:#f7f7f7;
+    background:#f1b8b8;
+
 }
 .menuH ul a
 {
@@ -322,3 +333,66 @@ ul.menuH ul
     /* background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEEEEE));  */
     background: #FFFFFF;
 }
+
+/* top navbar */
+.top-navbar{
+  display: flex;
+  justify-content: space-between;
+  
+}
+.top-navbar p{
+  margin-top: 13px;
+  margin-left: 15px;
+}
+.top-navbar .icons{
+  margin-top: 13px;
+  margin-right: 15px;
+}
+.top-navbar a{
+  text-decoration: none;
+  color: black;
+  margin-left: 10px;
+}
+.top-navbar a img{
+  margin-bottom: 3px;
+}
+.top-navbar a:hover{
+  color: black;
+}
+@media screen and (max-width:400px){
+  .top-navbar a{
+      font-size: 13px;
+  }
+  .top-navbar a img{
+      width: 15px;
+  }
+  .top-navbar p{
+      font-size: 13px;
+  }
+}
+@media screen and (max-width:320px){
+  .top-navbar a{
+      font-size: 10px;
+  }
+  .top-navbar a img{
+      width: 13px;
+  }
+  .top-navbar p{
+      font-size: 10px;
+  }
+}
+@media screen and (max-width:318px){
+  .top-navbar a{
+      font-size: 8px;
+      margin-left: 0;
+  }
+  .top-navbar a img{
+      width: 10px;
+      margin-left: 0;
+  }
+  .top-navbar p{
+      font-size: 10px;
+      margin-top: 20px;
+  }
+}
+/* top navbar */

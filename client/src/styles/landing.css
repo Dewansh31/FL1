@@ -48,13 +48,13 @@
     font-weight: bold;
   }
   .home-page button {
-    border-radius: 0;
+    border-radius: 3;
     width: 100%;
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    /* border-top-left-radius: 5px; */
+    /* border-bottom-right-radius: 5px; */
     font-size: 14px;
     font-weight: bold;
-  }
+}
   
   .home-page .card-text {
     color: rgb(90, 89, 89);
