@@ -5,6 +5,7 @@ import categoryModel from '../models/categoryModel.js';
 import orderModel from "../models/orderModel.js";
 import braintree from "braintree";
 import dotenv from 'dotenv'
+import { log } from "console";
 
 
 dotenv.config();
@@ -314,6 +315,7 @@ export const productCategoryController = async(req,res) => {
       slug:req.params.slug
     })
     const products = await productModel.find({category}).populate('category')
+    console.log(products[0]);
     res.status(200).send({
       success: true,
       category,
@@ -332,29 +334,30 @@ export const productCategoryController = async(req,res) => {
 // get product category by catergory
 export const productsubCategoryController = async(req,res) => {
 
-  console.log("request aa gaya");
+  // console.log(req.params.sn);
 
-  try {
+ 
 
-
-    const category = await categoryModel.findOne({
-      subName:{ $in : [req.params.sn] }
-    })
-    const products = await productModel.find({  subCategory:"C-and-D" }).populate('category')
-    console.log(products);
-    res.status(200).send({
-      success: true,
-      category,
-      products,
-    })
-  } catch (error) {
-    console.log(error);
-    res.status(400).send({
-      success:false,
-      error,
-      message: 'Error while getting products'
-    })
-  }
+    try {
+      const category = await categoryModel.findOne({
+        slug:req.params.slug,
+      })
+      const products = await productModel.find({ category } ).populate('category')
+     
+      // console.log(products);
+      res.status(200).send({
+        success: true,
+        category,
+        products,
+      })
+    } catch (error) {
+      console.log(error);
+      res.status(400).send({
+        success:false,
+        error,
+        message: 'Error while getting products'
+      })
+    }
 }
 
 

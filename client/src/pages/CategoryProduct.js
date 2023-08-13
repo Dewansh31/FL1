@@ -7,13 +7,14 @@ import "../styles/CategoryProductStyles.css";
 const CategoryProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
+  var [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
+  var flag = false;
 
   useEffect(() => {
-    if (params?.sn) getPrductsByCatSubCat();
+    if (params?.sn && params?.slug) getPrductsByCatSubCat();
     else if (params?.slug) getPrductsByCat();
-  }, [params?.slug,params?.slug?.sn]);
+  }, [params?.slug,params?.sn,flag]);
 
   const getPrductsByCat = async () => {
     try {
@@ -31,18 +32,35 @@ const CategoryProduct = () => {
     try {
       console.log(params.sn);
       const { data } = await axios.get(
-        `/api/v1/product/product-category/${params.sn}`
+        `/api/v1/product/product-category/code/${params.slug}/${params.sn}`
       );
-      setProducts(data?.products);
+     
       setCategory(data?.category);
+ 
+      // console.log(data?.products[0].subCategory)
+
+      var tempArr = data?.products
+
+
+      tempArr = tempArr.filter(checkSubCat);
+
+      function checkSubCat(pro) {
+        return pro.subCategory === params.sn;
+      }
+
+      setProducts(tempArr);
+
+      // flag = true;
+      // console.log(products);
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <Layout>
-      <div className="container category d-flex flex-wrap  justify-content-center">
-        <div className="d-flex flex-column">
+      {/*     */}
+      <div className=" category container justify-content-center">
+        <div className="d-flex  flex-column">
         <h4 className="text-center">Category - {category?.name}</h4>
         <h6 className="text-center">{products?.length} result found </h6>
 
@@ -78,9 +96,7 @@ const CategoryProduct = () => {
                     >
                       More Details
                     </button>
-                    {/* <button className="btn btn-primary ms-1">
-                      Add To Cart
-                    </button> */}
+                   
                   </div>
                 </div>
               ))}

@@ -24,10 +24,7 @@ const Header = () => {
   };
   return (
     <>
-        <div className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-            fdsfsfs
-        </div>
-
+       
        <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top" >
   <div className="container-fluid">
     {/* <a className="navbar-brand fw-bold" href="#">Coding Yaar</a> */}
@@ -98,7 +95,7 @@ const Header = () => {
 <li><Link to={`/category/${c.slug}`} className="arrow">{c.name}</Link>
 <ul>
      {c.subName?.map((sn)=>(
-         <li> <Link to={`/category/${sn}`} className="arrow">{sn}</Link> </li>
+         <li> <Link to={`/category/code/${c.slug}/${sn}`} className="arrow">{sn}</Link> </li>
      ))
 
      }

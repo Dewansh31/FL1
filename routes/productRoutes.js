@@ -69,7 +69,7 @@ router.get('/related-product/:pid/:cid',realtedProductController);
 router.get('/product-category/:slug',productCategoryController);
 
 // sub category wise product
-router.get('/product-category/:sn',productsubCategoryController);
+router.get('/product-category/code/:slug/:sn',productsubCategoryController);
 
 // payments routes
 // token

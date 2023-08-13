@@ -61,7 +61,7 @@ const UploadTutorials = () => {
           <h1>Upload Videos & Tutorials</h1>
          
          
-         <div>
+         <div className="container d-flex justify-content-center">
          <input
            type="text"
            value={vname}
@@ -69,7 +69,8 @@ const UploadTutorials = () => {
            className="form-control"
            onChange={(e) => setVName(e.target.value)}
                 />
-          <button onClick={uploadVideo}>Upload</button>
+          {/* <button >Upload</button> */}
+          <button type="button" class="btn btn-success" onClick={uploadVideo}>Upload</button>
          </div>
 
         </div>

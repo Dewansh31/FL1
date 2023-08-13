@@ -53,13 +53,15 @@
   /* margin-left: calc(-.5 * var(--bs-gutter-x)); */
 }
 
+
+
 @media (min-width: 1200px){
 .container {
     max-width: auto;
 }
 }
 
-/* @media only screen and (min-width:200px) and (max-width:767px){
+@media only screen and (min-width:200px) and (max-width:767px){
   .home-page
   {
      width: 100%;
@@ -67,4 +69,4 @@
      margin: 30px;
   }
   
-} */
+}

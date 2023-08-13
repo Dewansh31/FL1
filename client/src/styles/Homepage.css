@@ -8,6 +8,10 @@
   --bs-card-border-width: 0 !important;
 }
 
+.justify-content-center {
+  justify-content: center!important;
+}
+
 .home-page h1 {
   color: rgb(15, 14, 14);
   font-family: "Playfair Display", serif;
