@@ -24,7 +24,7 @@ const Header = () => {
   };
   return (
     <>
-    <h6 style={{textAlign:"center",background:"black",color:"white",padding:"4px"}}>Free shipping for orders over ₹ 5,000.00</h6>
+    <h6 style={{textAlign:"center",background:"black",color:"white",padding:"4px"}}>Free shipping for orders over ₹ 1,499.00</h6>
   <div className="top-navbar">
     <p>WELCOME TO OUR SHOP</p>
     <div className="icons mt-2" >

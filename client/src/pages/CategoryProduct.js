@@ -3,34 +3,41 @@ import Layout from "../components/Layout/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/CategoryProductStyles.css";
+import Spinner2 from "../components/Spinner2";
 // import "../styles/Homepage.css";
 const CategoryProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
   var [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
-  var flag = false;
+  const [isloading,setIsLoading] = useState(false);
 
   useEffect(() => {
     if (params?.sn && params?.slug) getPrductsByCatSubCat();
     else if (params?.slug) getPrductsByCat();
-  }, [params?.slug,params?.sn,flag]);
+  }, [params?.slug,params?.sn]);
 
   const getPrductsByCat = async () => {
+
     try {
+      setIsLoading(true)
+
       const { data } = await axios.get(
         `/api/v1/product/product-category/${params.slug}`
       );
       setProducts(data?.products);
       setCategory(data?.category);
+      setIsLoading(false)
     } catch (error) {
       console.log(error);
+      setIsLoading(false)
     }
+   
   };
 
   const getPrductsByCatSubCat = async () => {
     try {
-      console.log(params.sn);
+      setIsLoading(true)
       const { data } = await axios.get(
         `/api/v1/product/product-category/code/${params.slug}/${params.sn}`
       );
@@ -50,19 +57,23 @@ const CategoryProduct = () => {
 
       setProducts(tempArr);
 
-      // flag = true;
-      // console.log(products);
+      setIsLoading(false)
     } catch (error) {
       console.log(error);
+      setIsLoading(false)
     }
   };
   return (
     <Layout>
       {/*     */}
-      <div className=" category container justify-content-center">
+      <div className=" category container ">
         <div className="d-flex  flex-column">
+
+          
         <h4 className="text-center">Category - {category?.name}</h4>
         <h6 className="text-center">{products?.length} result found </h6>
+
+        { isloading && <Spinner2/> }
 
         </div>
         <div className="row">
@@ -89,9 +100,9 @@ const CategoryProduct = () => {
                     </p>
                     
                   </div>
-                  <div className="card-name-price"> 
+                  <div className="card-name-price mb-2" > 
                     <button
-                      className="btn btn-dark ms-1"
+                      className="btn btn-dark ms-1" 
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
                       More Details

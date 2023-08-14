@@ -4,14 +4,16 @@
   height: 350px;
 }
 
+.home-page h1 {
+  color: rgb(15, 14, 14);
+  font-family: "Playfair Display", serif;
+  margin-left: 20%;
+}
+
 .card{
   --bs-card-border-width: 0 !important;
 }
 
-.home-page h1 {
-  color: rgb(15, 14, 14);
-  font-family: "Playfair Display", serif;
-}
 
 .home-page {
   display: flex;

@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/landing.css";
+import b1 from '../photoes/b1.png'
 
 const Landing = () => {
 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&display=swap"); */
 
 * {
   margin: 0;
@@ -6,14 +6,17 @@
   box-sizing: border-box;
   font-family: 'Josefine Sans',sans-serif;
   font-size: 15px;
+  /* overflow-x: hidden; */
 }
 
+body{
+  overflow-x: hidden;
+}
 /* font-family: 'Poppins', sans-serif; */
 /* font-family: 'Playfair Display', serif; */
 
 /* //navbar css */
 .navbar {
-  font-family: "Poppins", sans-serif;
   font-size: 17px;
   line-height: 26px;
   text-transform: uppercase;
@@ -351,7 +354,7 @@ ul.menuH ul
 .top-navbar a{
   text-decoration: none;
   color: black;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 .top-navbar a img{
   margin-bottom: 3px;
@@ -395,4 +398,17 @@ ul.menuH ul
       margin-top: 20px;
   }
 }
-/* top navbar */
+
+
+.list-group-item.active {
+  z-index: 2;
+  color: var(--bs-list-group-active-color);
+  /* background-color: var(--bs-list-group-active-bg); */
+  /* border-color: var(--bs-list-group-active-border-color); */
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: var(--bs-dropdown-link-active-color);
+  text-decoration: none;
+  background-color:#FFFFFF;
+}

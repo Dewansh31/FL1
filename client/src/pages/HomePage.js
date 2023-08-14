@@ -8,9 +8,10 @@ import { useCart } from "../context/cart";
 import { toast } from "react-hot-toast";
 import "../styles/Homepage.css";
 import { AiOutlineReload } from "react-icons/ai";
-import Spinner from "../components/Spinner2";
+import Spinner2 from "../components/Spinner2";
 import Landing from "./Landing";
 import { Container, Button, Link } from 'react-floating-action-button'
+
 
 const HomePage = () => {
 
@@ -315,10 +316,12 @@ const HomePage = () => {
   
             {products.length === 0?
             <>
-               <Spinner/>
+               <Spinner2/>
             </>
             :
             <>
+
+
   
   <div className="cnt d-flex flex-wrap m-auto  justify-content-center ">
               {products?.map((p) => (
