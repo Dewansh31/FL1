@@ -49,6 +49,7 @@
 
 .similar-products .card img:hover {
   transform: scale(0.9);
+
 }
 
 .similar-products .card-img-top {
@@ -63,3 +64,14 @@
   margin-top: 10%;
 }
 
+.detail-image{
+
+
+    border-radius: 5px;
+    width: auto;
+    height: auto;
+    font-size: 0px;
+    position: relative;
+    user-select: none;
+    margin-left: 5%;
+}
