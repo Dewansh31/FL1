@@ -11,13 +11,46 @@ const ProductDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState({});
+  const [otherProducts, setOtherProducts] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [cart, setCart] = useCart();
+  const [keyword,setKeyword] = useState('');
 
   // initial product details
   useEffect(() => {
+    
     if (params?.slug) getProduct();
+    setKeyword(params?.slug)
+    console.log(keyword)
+    // handlesubmit()
+
   }, [params?.slug]);
+
+
+  const handlesubmit = async () => {
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)"
+    };
+
+    //https://www.flipkart.com/search?marketplace=FLIPKART&q=smartwatch"
+    //https://flipkart-scraper-api.dvishal485.workers.dev/search/${params?.slug}
+
+    let response = await fetch(
+      `https://www.flipkart.com/search?marketplace=FLIPKART&q=params?.slug`,
+      
+      {
+        method: "GET",
+        headers: headersList,
+      }
+    );
+
+
+
+    let data = await response.json();
+    console.log(data?.result);
+    setOtherProducts(data?.result);
+  };
 
   // get product
   const getProduct = async () => {
@@ -85,7 +118,7 @@ const ProductDetails = () => {
 
                   /> */}
         </div>
-        <div className="col-md-7 product-details-info">
+        <div className="col-md-7 product-details-info" style={{backgroundColor:"#8080801a",borderRadius:"10px"}}>
           <h1 className="text-center">Product Details</h1>
           <h6>Name : {product.name}</h6>
           <h6>Description : {product.description}</h6>
@@ -163,7 +196,45 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      {/* {JSON.stringify(product,null,4)} */}
+      <hr />
+      <h4>Compare with other websites ➡️</h4>
+
+      <div className="row container similar-products" style={{margin:"auto"}}>
+       
+        {otherProducts?.length < 1 && (
+          <p className="text-center">No Similar Products Found from other websites</p>
+        )}
+    
+        <div className="d-flex flex-wrap">
+          {otherProducts?.map((product) => (
+            <div className="card m-2" style={{ width: "18rem" }}>
+              <img
+                src={product.thumbnail}
+                className="card-img-top"
+                alt={product.name}
+              />
+              <div className="card-body">
+                <div className="card-name-price">
+                  <h5 className="card-title">{product.name}</h5>
+                  <h5 className="card-title card-price">Rs.{product.current_price}</h5>
+                </div>
+               
+              </div>
+              <div className="card-name-price mb-2">
+                <Link
+                  className="btn btn-dark ms-1"
+                  to={product.link} target="_blank"
+                >
+                  More Details
+                </Link>
+               
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+     
     </Layout>
   );
 };

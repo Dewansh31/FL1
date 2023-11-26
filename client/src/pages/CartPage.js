@@ -97,9 +97,13 @@ const CartPage = () => {
             </h4>
           </div>
         </div>
-        <div className="container">
+
+
+        <div className="container " >
           <div className="row">
-            <div className="col-md-7  p-0 m-0">
+
+
+            <div className="col-md-6  p-0 m-0">
               {cart?.map((p) => (
                 <div className="row card flex-row">
                   <div className="col-md-4">
@@ -127,7 +131,10 @@ const CartPage = () => {
                 </div>
               ))}
             </div>
-            <div className="col-md-5 cart-summary">
+
+
+
+            <div className="col-md-5 cart-summary" style={{marginLeft:"25px"}}>
               <h2>Cart Summary</h2>
               <p>Total | Checkout | Payment</p>
               <hr />

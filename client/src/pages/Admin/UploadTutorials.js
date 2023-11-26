@@ -17,7 +17,7 @@ const UploadTutorials = () => {
     try {
 
       function getId(url) {
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const regExp = /^.(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]).*/;
         const match = url.match(regExp);
     
         return (match && match[2].length === 11)
@@ -57,25 +57,31 @@ const UploadTutorials = () => {
         <div className="col-md-3">
           <AdminMenu />
         </div>
-        <div className="col-md-9">
-          <h1>Upload Videos & Tutorials</h1>
+        <div className="col-md-9 ">
+          <h1 className="text-center" style={{backgroundColor:"#ffc107",borderRadius:"10px"}} >Upload Videos & Tutorials</h1>
          
-         
-         <div className="container d-flex justify-content-center">
+         <div className="py-3 border rounded-4 bg-body-tertiary">
+         <div className="container d-flex justify-content-center ">
          <input
            type="text"
            value={vname}
            placeholder="Paste tutorial link"
            className="form-control"
            onChange={(e) => setVName(e.target.value)}
-                />
+          />
           {/* <button >Upload</button> */}
-          <button type="button" class="btn btn-success" onClick={uploadVideo}>Upload</button>
+          
+          
+          
          </div>
+         <button type="button" class="btn btn-success" style={{marginTop:"20px", marginLeft:"18px"}} onClick={uploadVideo}>Upload</button>
 
+        </div>
         </div>
       </div>
     </div>
+    <div>
+            </div>
   </Layout>
 
   )

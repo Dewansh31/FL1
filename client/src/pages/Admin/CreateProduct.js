@@ -98,8 +98,10 @@ const fetchSubCategories = async(value,key) =>{
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>Create Product</h1>
-            <div className="m-1 w-75">
+            <h1 className="text-center" style={{backgroundColor:"#ffc107",borderRadius:"10px"}}>Create Product</h1>
+
+
+  <div className="m-1 p-3 w-80 border rounded-4 bg-body-tertiary">
               <Select
                 bordered={false}
                 placeholder="Select a category"
@@ -140,7 +142,7 @@ const fetchSubCategories = async(value,key) =>{
               </Select>
 
               <div className="mb-3">
-                <label className="btn btn-outline-secondary col-md-12">
+                <label className="btn btn-outline-secondary col-md-12"  style={{backgroundColor:"blue",color:"white"}}>
                   {photo ? photo.name : "Upload Photo"}
                   <input
                     type="file"
@@ -148,6 +150,7 @@ const fetchSubCategories = async(value,key) =>{
                     accept="image/*"
                     onChange={(e) => setPhoto(e.target.files[0])}
                     hidden
+                   
                   />
                 </label>
               </div>
@@ -221,9 +224,13 @@ const fetchSubCategories = async(value,key) =>{
                 </button>
               </div>
             </div>
+
+  </div>
+</div>
+
+
           </div>
-        </div>
-      </div>
+     
     </Layout>
   );
 };

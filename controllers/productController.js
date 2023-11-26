@@ -6,6 +6,7 @@ import orderModel from "../models/orderModel.js";
 import braintree from "braintree";
 import dotenv from 'dotenv'
 import { log } from "console";
+import BannerModel from "../models/BannerModel.js";
 
 
 dotenv.config();
@@ -65,6 +66,35 @@ export const createProductController = async (req, res) => {
   }
 };
 
+
+export const createBannerController = async (req, res) => {
+
+  // console.log("request aya ");
+  try {
+    const {photo}  = req.files;
+    
+    // console.log(photo);
+    const products = new BannerModel({ });
+  
+    
+      products.photo.data = fs.readFileSync(photo.path);
+      products.photo.contentType = photo.type;
+    
+    await products.save();
+    res.status(201).send({
+      success: true,
+      message: "Banner Created Successfully",
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error in crearing product",
+    });
+  }
+};
 //get all products
 export const getProductController = async (req, res) => {
   try {
@@ -89,6 +119,29 @@ export const getProductController = async (req, res) => {
     });
   }
 };
+
+export const getBannerController = async (req, res) => {
+  try {
+    const products = await BannerModel.find({})
+
+    // console.log(products);
+
+    res.status(200).send({
+      success: true,
+      counTotal: products.length,
+      message: "ALL Banners ",
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Erorr in getting banners",
+      error: error.message,
+    });
+  }
+};
+
 // get single product
 export const getSingleProductController = async (req, res) => {
   try {
@@ -115,6 +168,23 @@ export const getSingleProductController = async (req, res) => {
 export const productPhotoController = async (req, res) => {
   try {
     const product = await productModel.findById(req.params.pid).select("photo");
+    if (product.photo.data) {
+      res.set("Content-type", product.photo.contentType);
+      return res.status(200).send(product.photo.data);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Erorr while getting photo",
+      error,
+    });
+  }
+};
+
+export const bannerPhotoController = async (req, res) => {
+  try {
+    const product = await BannerModel.findById(req.params.pid).select("photo");
     if (product.photo.data) {
       res.set("Content-type", product.photo.contentType);
       return res.status(200).send(product.photo.data);

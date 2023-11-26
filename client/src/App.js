@@ -27,6 +27,8 @@ import AdminOrders from "./pages/Admin/AdminOrders";
 import Landing from "./pages/Landing";
 import Tutorials from "./pages/Tutorials";
 import UploadTutorials from "./pages/Admin/UploadTutorials";
+
+import UploadBanner from "./pages/Admin/UploadBanner";
 function App() {
   return (
     <>
@@ -53,6 +55,7 @@ function App() {
           <Route path="admin/users" element={<Users/>} />
           <Route path="admin/orders" element={<AdminOrders/>} />
           <Route path="admin/upload-tutorials" element={<UploadTutorials/>} />
+          <Route path="admin/upload-banners" element={<UploadBanner/>} />
 
         </Route>
         <Route path="/register" element={<Register />} />

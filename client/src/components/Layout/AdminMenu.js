@@ -38,6 +38,13 @@ const AdminMenu = () => {
             Upload Tutorials
           </NavLink>
 
+          <NavLink
+            to="/dashboard/admin/upload-banners"
+            className="list-group-item list-group-item-action"
+          >
+            Upload Banner
+          </NavLink>
+
           {/* <NavLink
             to="/dashboard/admin/users"
             className="list-group-item list-group-item-action"

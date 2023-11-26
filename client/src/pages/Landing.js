@@ -1,8 +1,32 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "../styles/landing.css";
-import b1 from '../photoes/b1.png'
+// import b1 from '../photoes/b1.png'
+import axios from "axios";
 
 const Landing = () => {
+
+  const [banners, setBanners] = useState([]);
+
+
+  const getAllBanners = async () => {
+    try {
+      const { data } = await axios.get(
+        `/api/v1/product/get-banners`
+      );
+      setBanners(data?.products);
+      console.log(data?.products)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
+  useEffect(() => {
+    getAllBanners();
+  }, []);
+
+
 
   return (
    
@@ -14,14 +38,26 @@ const Landing = () => {
         data-bs-interval="false"
       >
         <div className="carousel-inner" style={{ height: "70%" }}>
-          <div className="carousel-item active">
+
+        {banners?.map((e)=>(
+
+            <div className="carousel-item active">
             <img
-              src="https://tulsiresin.com/cdn/shop/files/3_YEARS_Website_Banner_1900x.progressive.jpg?v=1689357048"
+            // src="https://tulsiresin.com/cdn/shop/files/online_resin_workshop_website_1900x.progressive.jpg?v=1677150932"
+              src={"/api/v1/product/banner-photo/"+e._id}
               className="d-block w-100"
               alt="..."
             />
-          </div>
-          <div className="carousel-item">
+            </div>
+
+        ))
+
+        }
+
+          
+
+
+          {/* <div className="carousel-item">
             <img
               src="https://tulsiresin.com/cdn/shop/files/online_resin_workshop_website_1900x.progressive.jpg?v=1677150932"
               className="d-block w-100"
@@ -34,7 +70,7 @@ const Landing = () => {
               className="d-block w-100"
               alt="..."
             />
-          </div>
+          </div> */}
         </div>
         <button
           className="carousel-control-prev"

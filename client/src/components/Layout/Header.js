@@ -7,7 +7,7 @@ import SearchInput from "../Form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
-import logo from '../../photoes/logo.png'
+import logo from '../../photoes/lg2.png'
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -113,7 +113,7 @@ const Header = () => {
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <Link to="/landing" className="navbar-brand">
-              <img style={{height:"70px",width:"70px"}} src={logo} />
+              <img style={{height:"70px"}} src={logo} />
             </Link>
       <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
         <li className="nav-item">

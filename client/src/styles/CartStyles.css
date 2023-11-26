@@ -27,8 +27,24 @@
 }
 .cart-page .cart-summary {
   text-align: center;
-  /* margin-top: -140px !important; */
+  text-align: center;
+  background-color:#f9f9f8;
+  border-radius: 10px;
 }
 .makepayment{
   margin-bottom: 10px;
 }
+
+
+
+@media screen and (max-width: 400px){
+  .cart-page .cart-summary {
+    text-align: center;
+    text-align: center;
+    background-color:#f9f9f8;
+    border-radius: 10px;
+    margin-left: 0;
+  }
+	
+}
+  

@@ -14,7 +14,10 @@ import {
   productCategoryController,
   braintreeTokenController,
   brainTreePaymentController,
-  productsubCategoryController
+  productsubCategoryController,
+  createBannerController,
+  getBannerController,
+  bannerPhotoController
 } from "../controllers/productController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 import formidable from "express-formidable";
@@ -29,6 +32,15 @@ router.post(
   formidable(),
   createProductController
 );
+
+router.post(
+  "/create-banner",
+  requireSignIn,
+  isAdmin,
+  formidable(),
+  createBannerController
+);
+
 //routes
 router.put(
   "/update-product/:pid",
@@ -41,11 +53,15 @@ router.put(
 //get products
 router.get("/get-product", getProductController);
 
+router.get("/get-banners", getBannerController);
+
 //single product
 router.get("/get-product/:slug", getSingleProductController);
 
 //get photo
 router.get("/product-photo/:pid", productPhotoController);
+
+router.get("/banner-photo/:pid", bannerPhotoController);
 
 //delete rproduct
 router.delete("/delete-product/:pid", deleteProductController);
