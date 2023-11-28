@@ -85,8 +85,8 @@ textarea{
 .btn1{
 	width: 100%;
 	padding: 0.5rem 1rem;
-	background-color: #000000;
-	color: #fff;
+	background-color: #00408e;
+  color: white;
 	font-size: 1.1rem;
 	border: none;
 	outline: none;
@@ -96,7 +96,8 @@ textarea{
 }
 
 .btn1:hover{
-    background-color: green;
+	background-color: #FF9B50;
+	color: white;
 }
 
 .field:focus{

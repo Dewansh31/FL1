@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/CategoryProductStyles.css";
 import Spinner2 from "../components/Spinner2";
+import { useTranslation } from 'react-i18next';
 // import "../styles/Homepage.css";
 const CategoryProduct = () => {
   const params = useParams();
@@ -11,6 +12,7 @@ const CategoryProduct = () => {
   var [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [isloading,setIsLoading] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (params?.sn && params?.slug) getPrductsByCatSubCat();
@@ -92,7 +94,7 @@ const CategoryProduct = () => {
                   />
                   <div className="card-body">
                   <div className="card-name-price">
-                    <h5 className="card-title">{p.name}</h5>
+                    <h6 className="card-title">{p.name.substring(0,15)}...</h6>
                     <h5 className="card-title card-price">Rs.{p.price}</h5>
                   </div>
                     <p className="card-text">
@@ -102,10 +104,10 @@ const CategoryProduct = () => {
                   </div>
                   <div className="card-name-price mb-2" > 
                     <button
-                      className="btn btn-dark ms-1" 
+                      className="btn mbtn ms-1" 
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
-                      More Details
+                      {t('More Details')}
                     </button>
                    
                   </div>

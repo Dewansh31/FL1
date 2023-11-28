@@ -3,9 +3,15 @@ import { useSearch } from "../../context/search";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+
+import { useTranslation } from 'react-i18next';
+
 const SearchInput = () => {
   const [values, setValues] = useSearch();
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,14 +40,14 @@ const SearchInput = () => {
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Search"
+          placeholder={t('Search')} 
           aria-label="Search"
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
           style={{borderRadius:"25px"}}
         />
         <button style={{borderRadius:"25px"}} className="btn btn-outline-success" type="submit">
-          Search
+        {t('Search')} 
         </button>
       </form>
     </div>

@@ -11,14 +11,14 @@ import { AiOutlineReload } from "react-icons/ai";
 import Spinner2 from "../components/Spinner2";
 import Landing from "./Landing";
 import { Container, Button, Link } from 'react-floating-action-button'
-
+import { useTranslation } from 'react-i18next';
 
 const HomePage = () => {
 
   const width = window.innerWidth;
   // The width below which the mobile view should be rendered
   const breakpoint = 500;
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [cart,setCart] = useCart();
   const [products, setProducts] = useState([]);
@@ -129,129 +129,22 @@ const HomePage = () => {
   };
   
     return (
-      <Layout title={"ALL Products"}>
+      <Layout title={t('ALL Products')}>
   
    <Landing/>
   
         <div className="container home-page mt-1 ">
   
-        
-    
-           
-            {/* <div className="col-md-2 filters">
-            <h4 className="text-center">Filter By Category</h4>
-            <div className="d-flex flex-column">
-              {categories?.map((c) => (
-                <Checkbox
-                  key={c._id}
-                  onChange={(e) => handleFilter(e.target.checked, c._id)}
-                >
-                  {c.name}
-                </Checkbox>
-              ))}
-            </div>
-       
-            <h4 className="text-center mt-4">Filter By Price</h4>
-            <div className="d-flex flex-column">
-              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-                {Prices?.map((p) => (
-                  <div key={p._id}>
-                    <Radio value={p.array}>{p.name}</Radio>
-                  </div>
-                ))}
-              </Radio.Group>
-            </div>
-            <div className="d-flex flex-column">
-              <button
-                className="btn btn-primary"
-                onClick={() => window.location.reload()}
-              >
-                RESET FILTERS
-              </button>
-  
-              <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filters</button>
-  
-  
-           
-  
-            </div>
-          </div>
-        */}
-  
-  
-  
-  
-      
-  
-  {/* <div className="modal  " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div className="modal-dialog">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h5 className="modal-title" id="staticBackdropLabel">Choose Filters</h5>
-          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-        </div>
-        <div className="modal-body">
-         
-        <div className="col-md-2 filters">
-            <h4 className="text-center">Filter By Category</h4>
-            <div className="d-flex flex-column">
-              {categories?.map((c) => (
-                <Checkbox
-                  key={c._id}
-                  onChange={(e) => handleFilter(e.target.checked, c._id)}
-                >
-                  {c.name}
-                </Checkbox>
-              ))}
-            </div>
-      
-            <h4 className="text-center mt-4">Filter By Price</h4>
-            <div className="d-flex flex-column">
-              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-                {Prices?.map((p) => (
-                  <div key={p._id}>
-                    <Radio value={p.array}>{p.name}</Radio>
-                  </div>
-                ))}
-              </Radio.Group>
-            </div>
-            <div className="d-flex flex-column">
-              <button
-                className="btn btn-primary"
-                onClick={() => window.location.reload()}
-              >
-                RESET FILTERS
-              </button>
-  
-  
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Launch static backdrop modal
-  </button>
-  
-            </div>
-          </div>
-  
-  
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          
-        </div>
-      </div>
-    </div>
-  </div> */}
-  
-  
   
   
   <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><span>Choose Filters</span></h5>
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel"><span> {t('Choose Filters')} </span></h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
     <div className=" filters">
-            <h4 className="text-center">Filter By Category</h4>
+            <h4 className="text-center">{t('Filter By Category')} </h4>
             <div className="d-flex flex-column">
               {categories?.map((c) => (
                 <Checkbox
@@ -263,7 +156,7 @@ const HomePage = () => {
               ))}
             </div>
             {/* price filter */}
-            <h4 className="text-center mt-4">Filter By Price</h4>
+            <h4 className="text-center mt-4">{t('Filter By Price')}</h4>
             <div className="d-flex flex-column">
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
                 {Prices?.map((p) => (
@@ -278,7 +171,7 @@ const HomePage = () => {
                 className="btn btn-primary"
                 onClick={() => window.location.reload()}
               >
-                RESET FILTERS
+                {t('RESET FILTERS')} 
               </button>
   
   
@@ -298,7 +191,7 @@ const HomePage = () => {
 
  
   <div class="row">
-    <div class="col-10"> <h1 className="heading" >All Products</h1></div>
+    <div class="col-10" style={{marginTop:"20px"}}> <h1 className="heading" >{t('All Products')}</h1></div>
     <div class="col-2"><button tooltip="Filters"  class="btn " height="0px" width="0px"type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
       
 
@@ -335,31 +228,31 @@ const HomePage = () => {
                   />
                   <div className="card-body">
                   <div className="card-name-price">
-                    <h5 className="card-title">{p.name}</h5>
+                    <h6 className="card-title">{p.name.substring(0,15)}...</h6>
                     <h5 className="card-title card-price"> Rs.{p.price}</h5>
                     </div>
-                    <p className="card-text">
-                      {p.description.substring(0, 30)}...
-                    </p>
+                    {/* <p className="card-text">
+                      {p.description.substring(0, 15)}...
+                    </p> */}
                    
                   </div>
                   <div className="card-name-price mb-2" >
                     <button
                    
-                      class="btn btn-dark ms-1 "
+                      className="btn mbtn ms-1 "
                       style={{marginLeft:"2px"}}
                       onClick={() => navigate(`/product/${p.slug}`)}
                     >
-                      More Details
+                     {t('More Details')}  
                     </button>
-                    <button class="btn btn-primary ms-1" 
+                    <button class="btn  acbtn ms-1" 
                      style={{marginRight:"4px"}}
                     onClick={()=>{
                     setCart([...cart,p])
                     localStorage.setItem('cart',JSON.stringify([...cart,p]))
                     toast.success('Item Added to cart')
                     }}>
-                    ADD TO CART
+                    {t('ADD TO CART')} 
                     </button>
                     </div>
                 </div>

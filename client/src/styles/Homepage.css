@@ -14,6 +14,23 @@
   --bs-card-border-width: 0 !important;
 }
 
+.mbtn{
+  color: #FFF;
+  background-color: #00408e;
+}
+.mbtn:hover{
+  color: #FFF;
+  background-color: #01295a;
+}
+
+.acbtn{
+  color: #FFF;
+  background-color: #FF9B50;
+}
+.acbtn:hover{
+  color: #FFF;
+  background-color: #e98335;
+}
 
 .home-page {
   display: flex;

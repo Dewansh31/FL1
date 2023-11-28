@@ -21,11 +21,7 @@ const Footer = () => {
                   <span />
                 </h5>
                 <p>
-                  Best epoxy resin supplier in India. Tulsi resin store is a top
-                  player in the category of Epoxy Resin Craft Materials, Clock
-                  Materials, Shells, and other craft materials in India. This
-                  well-known establishment acts as a one-stop destination
-                  servicing customers both local and from other parts of India.
+                Welcome to Ethenic Ease, where style meets convenience! We're passionate about bringing you a curated selection of high-quality products that enhance your lifestyle. From trendy fashion to cutting-edge gadgets, our team scours the globe to deliver the latest trends right to your doorstep. Elevate your shopping experience with us!
                 </p>
               </div>
             </div>
@@ -81,7 +77,7 @@ const Footer = () => {
                   <span />
                 </h5>
                 <p>
-                Call : +91 8817909028
+                Call : +91 8815XXXXXX
                 </p>
                 {/* <a className="btn" href="https://bit.ly/3m9avif" target="_blank">Send us an email</a> */}
               </div>
@@ -94,7 +90,7 @@ const Footer = () => {
                 </h5>
                 <p>
                   <a href="mailto:info.artefactindia@gmail.com" title="glorythemes">
-                  info.artefactindia@gmail.com
+                  sample@gmail.com
                   </a>
                 </p>
                 <ul className="social-footer2">
@@ -102,7 +98,7 @@ const Footer = () => {
                     <a
                       title="youtube"
                       target="_blank"
-                      href="https://www.youtube.com/@Artefact-India"
+                      // href="https://www.youtube.com/@Artefact-India"
                     >
                       <img
                         alt="youtube"
@@ -114,7 +110,7 @@ const Footer = () => {
                   </li>
                   <li className>
                     <a
-                      href=""
+                      // href=""
                       target="_blank"
                       title="Facebook"
                     >
@@ -144,7 +140,7 @@ const Footer = () => {
                     <a
                       title="instagram"
                       target="_blank"
-                      href="https://www.instagram.com/artefact_india_/"
+                      // href="https://www.instagram.com/artefact_india_/"
                     >
                       <img
                         alt="instagram"

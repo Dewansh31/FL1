@@ -29,7 +29,30 @@ import Tutorials from "./pages/Tutorials";
 import UploadTutorials from "./pages/Admin/UploadTutorials";
 
 import UploadBanner from "./pages/Admin/UploadBanner";
+
+//translator...
+import { useTranslation } from 'react-i18next';
+import { useState } from "react";
+
+// Contains the value and text for the options
+const languages = [
+  { value: 'en', text: "Options" },
+  { value: 'en', text: "English" },
+  { value: 'hi', text: "Hindi" }
+
+]
+
 function App() {
+  const { t } = useTranslation();
+  const [lang, setLang] = useState('en');
+
+
+  const handleChange = e => { 
+    setLang(e.target.value);
+    let loc = "http://localhost:3000/";
+    window.location.replace(loc + "?lng=" + e.target.value);
+}
+
   return (
     <>
       <Routes>

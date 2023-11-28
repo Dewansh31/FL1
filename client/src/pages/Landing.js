@@ -1,12 +1,16 @@
 import React,{useState,useEffect} from "react";
 import "../styles/landing.css";
 // import b1 from '../photoes/b1.png'
+import { Link } from "react-router-dom";
 import axios from "axios";
+import useCategory from "../hooks/useCategory";
+import { useTranslation } from 'react-i18next';
 
 const Landing = () => {
 
   const [banners, setBanners] = useState([]);
-
+ 
+  const { t } = useTranslation();
 
   const getAllBanners = async () => {
     try {
@@ -14,7 +18,7 @@ const Landing = () => {
         `/api/v1/product/get-banners`
       );
       setBanners(data?.products);
-      console.log(data?.products)
+      // console.log(data?.products)
     } catch (error) {
       console.log(error);
     }
@@ -27,11 +31,14 @@ const Landing = () => {
   }, []);
 
 
+  const categories = useCategory();
+
 
   return (
    
-
-      <div
+    <>
+    
+    <div
         id="carouselExampleControlsNoTouching"
         className="carousel slide"
         data-bs-touch="false"
@@ -91,8 +98,33 @@ const Landing = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-   
 
+<div className="container">
+
+
+
+<h3 style={{marginTop:"20px",margin:"15px",textAlign:"center"}}>   {t('Categories')}</h3>
+    <div  className="container " style={{background:"#e6e6edc9",borderRadius:"10px"}}>
+      <div className="row container " style={{margin:"auto"}}>
+        {categories.map((c) => (
+          <div className="col-md-4 mt-5 mb-3 gx-3 gy-3" key={c._id}  >
+            <div className="card" >
+            <Link to={`/category/${c.slug}`} className="btn cat-btn">
+              {c.name}
+            </Link>
+          </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  
+
+</div>
+</>
+
+
+   
+    
 
    
   

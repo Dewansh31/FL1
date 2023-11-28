@@ -7,6 +7,7 @@ import DropIn from "braintree-web-drop-in-react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/CartStyles.css";
+import { useTranslation } from 'react-i18next';
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -15,6 +16,7 @@ const CartPage = () => {
   const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // total price
   const totalPrice = () => {
@@ -93,14 +95,14 @@ const CartPage = () => {
                 ? `You have ${cart.length} items in your cart ${
                     auth?.token ? "" : "please login to checkout"
                   }`
-                : "Your Cart Is Empty"}
+                : `${t("Your Cart Is Empty")}`  }
             </h4>
           </div>
         </div>
 
 
         <div className="container " >
-          <div className="row">
+          <div className="row" style={{justifyContent:"space-between"}} >
 
 
             <div className="col-md-6  p-0 m-0">
@@ -134,21 +136,21 @@ const CartPage = () => {
 
 
 
-            <div className="col-md-5 cart-summary" style={{marginLeft:"25px"}}>
-              <h2>Cart Summary</h2>
-              <p>Total | Checkout | Payment</p>
+            <div className="col-md-5 cart-summary" >
+              <h2>{t('Cart Summary')}</h2>
+              <p>{t('Total')}| {t('Checkout')} | {t('Payment')}</p>
               <hr />
-              <h4>Total: Rs.{totalPrice()} </h4>
+              <h4>{t('Total')}: {t('Rs')}.{totalPrice()} </h4>
               {auth?.user?.address ? (
                 <>
                   <div className="mb-3">
-                    <h4>Current Address</h4>
+                    <h4>{t('Current Address')}</h4>
                     <h5>{auth?.user?.address}</h5>
                     <button
                       className="btn btn-outline-warning"
                       onClick={() => navigate("/dashboard/user/profile")}
                     >
-                      Update Address
+                     {t('Update Address')}
                     </button>
                   </div>
                 </>
@@ -159,7 +161,7 @@ const CartPage = () => {
                       className="btn btn-outline-warning"
                       onClick={() => navigate("/dashboard/user/profile")}
                     >
-                      Update Address
+                      {t('Update Address')}
                     </button>
                   ) : (
                     <button
@@ -170,7 +172,7 @@ const CartPage = () => {
                         })
                       }
                     >
-                      Plase Login to checkout
+                      {t('Please Login to checkout')}
                     </button>
                   )}
                 </div>

@@ -4,8 +4,10 @@ import Layout from "./../components/Layout/Layout";
 import emailjs from '@emailjs/browser';
 import "../styles/Contact.css";
 import { toast } from "react-hot-toast";
+import { useTranslation } from 'react-i18next';
 const Contact = () => {
   const form = useRef();
+  const { t } = useTranslation();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const Contact = () => {
   };
   
   return (
-    <Layout title={"Contact us"}>
+    <Layout title={t("Contact us")}>
       <div className="container1">
         <div className="contact-box1">
           {/* <div className="left1">
@@ -35,17 +37,17 @@ const Contact = () => {
             ></iframe>
           </div> */}
           <div className="right1">
-            <h2>Contact Us</h2>
+            <h2>{t('Contact Us')}</h2>
             <form ref={form} onSubmit={sendEmail}>
-            <input type="text" className="field" placeholder="Your Name" name="user_name"/>
-            <input type="text" className="field" placeholder="Your Email" name="user_email"  />
-            <input type="text" className="field" placeholder="Phone" name="user_phone" />
+            <input type="text" className="field" placeholder={t("Your Name")} name="user_name"/>
+            <input type="text" className="field" placeholder={t("Your Email")} name="user_email"  />
+            <input type="text" className="field" placeholder={t("Phone")} name="user_phone" />
             <textarea
-              placeholder="Message"
+              placeholder={t("Message")}
               className="field"
               name="message" 
             />
-            <button className="btn1" type="submit" value="Send">Send</button>
+            <button className="btn1" type="submit" value="Send">{t('Send')}</button>
             </form>
            
           </div>

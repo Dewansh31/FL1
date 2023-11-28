@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 // import {toast} from 'react-toastify'
 import "../../styles/AuthStyles.css";
+import { useTranslation } from 'react-i18next';
 
 const baseURL = "/api/v1/auth/register";
+
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -16,6 +18,7 @@ const Register = () => {
   const [address, setAddress] = useState("");
   const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // form function
   const handleSubmit = async (e) => {
@@ -42,10 +45,10 @@ const Register = () => {
   };
 
   return (
-    <Layout title="Register - Ecommerce App">
+    <Layout title={t("Register - Ecommerce App")}>
       <div className="form-container" style={{ minHeight: "90vh" }}>
         <form onSubmit={handleSubmit}>
-          <h4 className="title">REGISTER FORM</h4>
+          <h4 className="title">{t('REGISTER FORM')}</h4>
           <div className="mb-3">
             <input
               type="text"
@@ -53,7 +56,7 @@ const Register = () => {
               onChange={(e) => setName(e.target.value)}
               className="form-control"
               id="exampleInputEmail1"
-              placeholder="Enter Your Name"
+              placeholder={t("Enter Your Name")}
               required
               autoFocus
             />
@@ -65,7 +68,7 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="form-control"
               id="exampleInputEmail1"
-              placeholder="Enter Your Email "
+              placeholder={t("Enter Your Email")}
               required
             />
           </div>
@@ -76,7 +79,7 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
               className="form-control"
               id="exampleInputPassword1"
-              placeholder="Enter Your Password"
+              placeholder={t("Enter Your Password")}
               required
             />
           </div>
@@ -87,7 +90,9 @@ const Register = () => {
               onChange={(e) => setPhone(e.target.value)}
               className="form-control"
               id="exampleInputEmail1"
-              placeholder="Enter Your Phone"
+              placeholder={t("Enter Your Phone")}
+              maxlength="10"
+              minlength="10"
               required
             />
           </div>
@@ -98,7 +103,7 @@ const Register = () => {
               onChange={(e) => setAddress(e.target.value)}
               className="form-control"
               id="exampleInputEmail1"
-              placeholder="Enter Your Address"
+              placeholder={t("Enter Your Address")}
               required
             />
           </div>
@@ -109,12 +114,12 @@ const Register = () => {
               onChange={(e) => setAnswer(e.target.value)}
               className="form-control"
               id="exampleInputEmail1"
-              placeholder="What is Your Favorite Color"
+              placeholder={t("What is Your Favorite Color")}
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary">
-            REGISTER
+          <button type="submit" className="btn1">
+           {t("REGISTER")}
           </button>
         </form>
       </div>

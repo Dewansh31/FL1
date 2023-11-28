@@ -2,12 +2,14 @@ import React,{useState,useEffect} from "react";
 import Layout from "./../components/Layout/Layout";
 import "../styles/Tutorial.css";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
 
 const Tutorials = () => {
 
   const [tuts, setTuts] = useState([]);
 
   const [product,setProduct] = useState([]);
+  const { t } = useTranslation();
 
   const getTutorials = async() =>{
 
@@ -34,12 +36,12 @@ const Tutorials = () => {
 
 
   return (
-    <Layout title={"Tutorials"}>
+    <Layout title={t("Tutorials")}>
 
 
     <div style={{ marginTop: "20px" }}>
 
-    <h1 className="text-center">Tutorials & Workshops</h1>
+    <h1 className="text-center">{t("Tutorials & Workshops")}</h1>
     <div className="container  mb-3" >
 
 

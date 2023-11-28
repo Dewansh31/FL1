@@ -6,6 +6,8 @@ import "../styles/ProductDetailsStyles.css";
 import { useCart } from "../context/cart";
 import { toast } from "react-hot-toast";
 import ReactImageMagnify from "react-image-magnify";
+import { useTranslation } from 'react-i18next';
+
 
 const ProductDetails = () => {
   const params = useParams();
@@ -15,42 +17,68 @@ const ProductDetails = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [cart, setCart] = useCart();
   const [keyword,setKeyword] = useState('');
+  const { t } = useTranslation();
 
   // initial product details
   useEffect(() => {
     
     if (params?.slug) getProduct();
     setKeyword(params?.slug)
-    console.log(keyword)
-    // handlesubmit()
+    // console.log(keyword)
+    handlesubmit()
 
   }, [params?.slug]);
 
 
-  const handlesubmit = async () => {
-    let headersList = {
-      Accept: "*/*",
-      "User-Agent": "Thunder Client (https://www.thunderclient.com)"
-    };
+  const handlesubmit = async () =>{
 
-    //https://www.flipkart.com/search?marketplace=FLIPKART&q=smartwatch"
-    //https://flipkart-scraper-api.dvishal485.workers.dev/search/${params?.slug}
-
-    let response = await fetch(
-      `https://www.flipkart.com/search?marketplace=FLIPKART&q=params?.slug`,
-      
-      {
-        method: "GET",
-        headers: headersList,
+    const options = {
+      method: 'GET',
+      url: `https://amazon_data_extractor.p.rapidapi.com/search/${params?.slug}`,
+      params: {
+        api_key: '8045a19e2deb0a201d022a330d701576'
+      },
+      headers: {
+        'X-RapidAPI-Key': '27ed91734amsh907da8de1822d01p19d398jsnf841d4cb64b8',
+        'X-RapidAPI-Host': 'amazon_data_extractor.p.rapidapi.com'
       }
-    );
+    };
+    
+   
+        try {
+            const response = await axios.request(options);
+            setOtherProducts(response.data.results);
+            // console.log(response.data.results);
+        } catch (error) {
+            console.error(error);
+        }
+    
+
+  }
+
+  // const handlesubmit = async () => {
+  //   let headersList = {
+  //     Accept: "*/*",
+  //     "User-Agent": "Thunder Client (https://www.thunderclient.com)"
+  //   };
 
 
 
-    let data = await response.json();
-    console.log(data?.result);
-    setOtherProducts(data?.result);
-  };
+  //   let response = await fetch(
+  //     `https://www.flipkart.com/search?marketplace=FLIPKART&q=params?.slug`,
+      
+  //     {
+  //       method: "GET",
+  //       headers: headersList,
+  //     }
+  //   );
+
+
+
+  //   let data = await response.json();
+  //   console.log(data?.result);
+  //   setOtherProducts(data?.result);
+  // };
 
   // get product
   const getProduct = async () => {
@@ -119,14 +147,14 @@ const ProductDetails = () => {
                   /> */}
         </div>
         <div className="col-md-7 product-details-info" style={{backgroundColor:"#8080801a",borderRadius:"10px"}}>
-          <h1 className="text-center">Product Details</h1>
-          <h6>Name : {product.name}</h6>
-          <h6>Description : {product.description}</h6>
-          <h6>Price : {product.price}</h6>
-          <h6>Category : {product?.category?.name}</h6>
+          <h1 className="text-center">{t('Product Details')}</h1>
+          <h6>{t('Name')} : {product.name}</h6>
+          <h6>{t('Description')} : {product.description}</h6>
+          <h6>{t('Price')} : {product.price}</h6>
+          <h6>{t('Category')}: {product?.category?.name}</h6>
 
           {product?.subCategory && (
-            <h6>subCategory : {product?.subCategory}</h6>
+            <h6>{t('subCategory')} : {product?.subCategory}</h6>
           )}
 
          <div>
@@ -138,11 +166,11 @@ const ProductDetails = () => {
               toast.success("Item Added to cart");
             }}
           >
-            ADD TO CART
+            {t('ADD TO CART')}
           </button>
 
           <button className="btn btn-warning ms-1" onClick={handleBuy}>
-            Buy Now
+            {t('Buy Now')}
           </button>
 
          </div>
@@ -150,9 +178,9 @@ const ProductDetails = () => {
       </div>
       <hr />
       <div className="row container similar-products">
-        <h4>Similar Products ➡️</h4>
+        <h4>{t('Similar Products')} ➡️</h4>
         {relatedProducts.length < 1 && (
-          <p className="text-center">No Similar Products Found</p>
+          <p className="text-center">{t('No Similar Products Found')}</p>
         )}
         {/* {JSON.stringify(relatedProducts,null,4)} */}
         <div className="d-flex flex-wrap">
@@ -165,17 +193,17 @@ const ProductDetails = () => {
               />
               <div className="card-body">
                 <div className="card-name-price">
-                  <h5 className="card-title">{p.name}</h5>
-                  <h5 className="card-title card-price">Rs.{p.price}</h5>
+                  <h6 className="card-title">{p.name.substring(0,15)}...</h6>
+                  <h5 className="card-title card-price">{t('Rs')}.{p.price}</h5>
                 </div>
-                <p className="card-text">{p.description.substring(0, 60)}...</p>
+                {/* <p className="card-text">{p.description.substring(0, 60)}...</p> */}
               </div>
               <div className="card-name-price mb-2">
                 <button
-                  className="btn btn-dark ms-1"
+                  className="btn  mbtn mdetail ms-1"
                   onClick={() => navigate(`/product/${p.slug}`)}
                 >
-                  More Details
+                  {t('More Details')}
                 </button>
                 {/* <button
                   className="btn btn-dark ms-1"
@@ -197,9 +225,14 @@ const ProductDetails = () => {
       </div>
 
       <hr />
-      <h4>Compare with other websites ➡️</h4>
+      <h4>{t('Compare with other websites')} ➡️</h4>
 
       <div className="row container similar-products" style={{margin:"auto"}}>
+
+        {otherProducts?.length == 0 && (
+          <p className="text-center">Fetching data from other websites...</p>
+        )}
+    
        
         {otherProducts?.length < 1 && (
           <p className="text-center">No Similar Products Found from other websites</p>
@@ -209,21 +242,21 @@ const ProductDetails = () => {
           {otherProducts?.map((product) => (
             <div className="card m-2" style={{ width: "18rem" }}>
               <img
-                src={product.thumbnail}
+                src={product.image}
                 className="card-img-top"
                 alt={product.name}
               />
               <div className="card-body">
                 <div className="card-name-price">
-                  <h5 className="card-title">{product.name}</h5>
-                  <h5 className="card-title card-price">Rs.{product.current_price}</h5>
+                  <h6 className="card-title">{product.name.substring(0,30)}...</h6>
+                  <h5 className="card-title card-price">Rs.{parseInt(product.price*83)}</h5>
                 </div>
                
               </div>
               <div className="card-name-price mb-2">
                 <Link
-                  className="btn btn-dark ms-1"
-                  to={product.link} target="_blank"
+                  className="btn  mbtn mdetail ms-1"
+                  to={product.url} target="_blank"
                 >
                   More Details
                 </Link>

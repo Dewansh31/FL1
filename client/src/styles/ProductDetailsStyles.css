@@ -75,3 +75,12 @@
     user-select: none;
     margin-left: 5%;
 }
+
+.mdetail {
+  border-radius: 5px;
+  margin-left: 4px;
+  margin-right: 4px;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+}

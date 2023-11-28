@@ -76,7 +76,7 @@
   
   .filters h4 {
     margin-top: 20px;
-    color: gray !important;
+    color: #051e3c !important;
     border-bottom: 1px solid rgba(128, 128, 128, 0.337);
   }
   
@@ -101,7 +101,7 @@
   }
   
   .loadmore {
-    color: green;
+    color: #743c12;
     font-weight: bold;
     font-size: 20px !important;
   }

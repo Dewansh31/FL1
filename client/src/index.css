@@ -136,11 +136,19 @@ body{
 .cat-btn {
   padding: 40px 0px;
   font-size: 24px;
+  color: #FFFFFF;
   text-transform: uppercase;
+  background-image: url("https://t4.ftcdn.net/jpg/03/09/24/63/360_F_309246316_uXQOS2tcdUceurcmAJprpxBbbktiSW0C.jpg");
+  
 }
 .cat-btn:hover {
-  background-color: #434343;
-  color: white;
+  /* transform: scale(0.99); */
+  /* padding: 40px 0px; */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+  font-size: 30px;
+  font-style: bold;
+  background-image: url("https://thumbs.dreamstime.com/b/details-golden-texture-background-gold-color-paint-wall-luxury-golden-background-wallpaper-gold-foil-details-golden-106104769.jpg");
+  color: #00295b !important;
 }
 /* ================
 ====dashboard
@@ -264,7 +272,7 @@ ul.menuH ul
 }
 .menuH li li:hover, .menuH li li.onhover
 {
-    background:#f1b8b8;
+    
 
 }
 .menuH ul a
@@ -279,7 +287,8 @@ ul.menuH ul
 
 .menuH ul a:hover
 {
-    color: red;
+    color: white;
+    background-color: #00408e;
 }
 
 .menuH li:hover ul, .menuH li.onhover ul
@@ -342,6 +351,7 @@ ul.menuH ul
 .top-navbar{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
   
 }
 .top-navbar p{
@@ -437,4 +447,22 @@ ul.menuH ul
   margin-bottom: 0;
   /* border-radius: var(--bs-list-group-border-radius); */
   border-radius: 10px !important;
+}
+
+.cat-btn {
+  padding: 90px 0px;
+  font-size: 24px;
+  text-transform: uppercase;
+  /* background-image: url("https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg"); */
+  background-color: #00408e;
+  color: white;
+  border-radius: 20px;
+
+}
+.cat-btn:hover {
+  background-color: #FF9B50;
+  /* background-image: url("https://www.imageshine.in/uploads/gallery/Photo-abstract-blue-background-with-smooth-lines.jpg"); */
+  color: white;
+
+ 
 }

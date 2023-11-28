@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
+import { useTranslation } from 'react-i18next';
 
 const baseURL = "/api/v1/auth/forgot-password";
 
@@ -13,6 +14,7 @@ const ForgotPasssword = () => {
   const [answer, setAnswer] = useState("");
 
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // form function
   const handleSubmit = async (e) => {
@@ -39,7 +41,7 @@ const ForgotPasssword = () => {
     <Layout title={"Forgot Password - Ecommerce APP"}>
       <div className="form-container ">
         <form onSubmit={handleSubmit}>
-          <h4 className="title">RESET PASSWORD</h4>
+          <h4 className="title">{t("RESET PASSWORD")}</h4>
 
           <div className="mb-3">
             <input
@@ -48,7 +50,7 @@ const ForgotPasssword = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="form-control"
               id="exampleInputEmail1"
-              placeholder="Enter Your Email "
+              placeholder={t("Enter Your Email")}
               required
             />
           </div>
@@ -59,7 +61,7 @@ const ForgotPasssword = () => {
               onChange={(e) => setAnswer(e.target.value)}
               className="form-control"
               id="exampleInputEmail1"
-              placeholder="Enter Your favorite Color Name"
+              placeholder={t("Enter Your favorite Color Name")}
               required
             />
           </div>
@@ -70,13 +72,13 @@ const ForgotPasssword = () => {
               onChange={(e) => setNewPassword(e.target.value)}
               className="form-control"
               id="exampleInputPassword1"
-              placeholder="Enter Your Password"
+              placeholder={t("Enter Your Password")}
               required
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
-            RESET
+          <button type="submit" className="btn1">
+            {("RESET")}
           </button>
         </form>
       </div>

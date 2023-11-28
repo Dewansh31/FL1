@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { NavLink, Link } from "react-router-dom";
 // import { GiShoppingBag } from "react-icons/gi";
 import { useAuth } from "../../context/auth";
@@ -8,8 +8,29 @@ import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
 import logo from '../../photoes/lg2.png'
+import './Language.css'
+import { useTranslation } from 'react-i18next';
+
+
+const languages = [
+  {id:1, value: 'en', text: "Language" },
+  {id:2, value: 'en', text: "English" },
+  {id:3, value: 'hi', text: "Hindi" },
+
+]
 
 const Header = () => {
+
+  const { t } = useTranslation();
+  const [lang, setLang] = useState('en');
+
+
+  const handleChange = e => { 
+    setLang(e.target.value);
+    let loc = "http://localhost:3000/";
+    window.location.replace(loc + "?lng=" + e.target.value);
+}
+
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const categories = useCategory();
@@ -24,18 +45,39 @@ const Header = () => {
   };
   return (
     <>
-    <h6 style={{textAlign:"center",background:"black",color:"white",padding:"4px"}}>Free shipping for orders over ₹ 1,499.00</h6>
+    <h6 style={{textAlign:"center",background:"black",color:"white",padding:"4px"}}>{t('Free shipping for orders over ₹ 1,499.00')}</h6>
   <div className="top-navbar">
-    <p>WELCOME TO OUR SHOP</p>
+
+  {/* <div className="switch">
+    <input id="language-toggle" className="check-toggle check-toggle-round-flat" type="checkbox" value={lang} onChange={handleLanguage} />
+    <label htmlFor="language-toggle" />
+    <span className="on">HI</span>
+    <span className="off">EN</span>
+  </div> */}
+
+<div className="js">
+  <div className="language-picker js-language-picker" data-trigger-class="btn btn--subtle">
+    <form action className="language-picker__form">
+     
+      <select name="language-picker-select" id="language-picker-select" value={lang} onChange={handleChange}>
+                {languages.map(item => {
+                    return (<option key={item.id} 
+                    value={item.value}>{item.text}</option>);
+                })}
+            </select>
+    </form>
+  </div></div>
+
+
     <div className="icons mt-2" >
 
     {!auth.user ? (
                 <>
                     <button type="button" className="btn btn-warning"><NavLink to="/login" className="nav-link btn btn-warning">
-                      Login
+                      {t('LOGIN')} 
                     </NavLink></button> &nbsp;
       <button type="button" className="btn btn-warning"><NavLink to="/register" className="nav-link btn btn-warning">
-                      Register
+                      {t('REGISTER')}
                     </NavLink></button> &nbsp;
                 </>
               ):(
@@ -52,51 +94,20 @@ const Header = () => {
                         }`}
                         className="dropdown-item"
                       >
-                        Dashboard
+                         {t('Dashboard')}
                       </NavLink></li>
     <li><NavLink
                         onClick={handleLogout}
                         to="/login"
                         className="dropdown-item"
                       >
-                        Logout
+                         {t('Logout')}
                       </NavLink></li>
    
 
   </ul>
 </div>
-                {/* <li className="nav-item dropdown nv">
-                  <NavLink
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    {auth?.user?.name}
-                  </NavLink>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <NavLink
-                        to={`/dashboard/${
-                          auth?.user?.role === 1 ? "admin" : "user"
-                        }`}
-                        className="dropdown-item"
-                      >
-                        Dashboard
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={handleLogout}
-                        to="/login"
-                        className="dropdown-item"
-                      >
-                        Logout
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li> */}
+
               </>
               ) }
 
@@ -107,7 +118,7 @@ const Header = () => {
        
        <nav className="navbar navbar-expand-lg bg-body-tertiary " >
   <div className="container-fluid">
-    {/* <a className="navbar-brand fw-bold" href="#">Coding Yaar</a> */}
+ 
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
     </button>
@@ -118,54 +129,17 @@ const Header = () => {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
         <li className="nav-item">
           <NavLink to="/" className="nav-link ">
-                  Home
+          {t('Home')} 
                 </NavLink>
         </li>
-        {/* <li className="nav-item dropdown">
-           <Link
-                  className="nav-link dropdown-toggle"
-                  to={"/categories"}
-                  data-bs-toggle="dropdown"
-                >
-                  Categories
-                </Link>
-<ul className="dropdown-menu">
-                  <li>
-                    <Link className="dropdown-item" to={"/categories"}>
-                      All Categories
-                    </Link>
-                  </li>
-                  {categories?.map((c) => (
-                    <li>
-                      <Link
-                        className="dropdown-item"
-                        to={`/category/${c.slug}`}
-                      >
-                        {c.name}
-                      </Link>
-
-                      <ul className="arrow">
-                 {c.subName?.map((elem)=>(
-                    <li><a href="#">{elem}</a></li>
-                 ))
-
-                 }
-         
-        </ul>
-
-              
-                    </li>
-                  ))}
-                </ul> 
-
-        </li> */}
+     
 
 <ul className="menuH">
-  <li><a href="#" className="arrow"> All Products</a>
+  <li><a href="#" className="arrow"> All Products  </a>
     <ul>
     <li>
                     <Link className="dropdown-item" to={"/categories"}>
-                      All Categories
+                    {t('All Categories')} 
                     </Link>
                   </li>
    
@@ -175,7 +149,7 @@ const Header = () => {
 <li><Link to={`/category/${c.slug}`} className="arrow">{c.name}</Link>
 <ul>
     
-    {c.subName.length === 0 && <li> <Link to={`/`} className="arrow">No sub-category</Link> </li>
+    {c.subName.length === 0 && <li> <Link to={`/`} className="arrow"> {t('No sub-category')}</Link> </li>
 
     }
 
@@ -197,64 +171,24 @@ const Header = () => {
 
  {!auth.user ? (
                 <>
-                  {/* <li className="nav-item nv">
-                    <NavLink to="/register" className="nav-link">
-                      Register
-                    </NavLink>
-                  </li>
-                  <li className="nav-item nv">
-                    <NavLink to="/login" className="nav-link">
-                      Login
-                    </NavLink>
-                  </li> */}
+                 
                 </>
               ) : (
                 <>
-                  {/* <li className="nav-item dropdown nv">
-                    <NavLink
-                      className="nav-link dropdown-toggle"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      {auth?.user?.name}
-                    </NavLink>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <NavLink
-                          to={`/dashboard/${
-                            auth?.user?.role === 1 ? "admin" : "user"
-                          }`}
-                          className="dropdown-item"
-                        >
-                          Dashboard
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          onClick={handleLogout}
-                          to="/login"
-                          className="dropdown-item"
-                        >
-                          Logout
-                        </NavLink>
-                      </li>
-                    </ul>
-                  </li> */}
+                  
                 </>
               )}
 
 <li className="nav-item nv">
                     <NavLink to="/tutorials" className="nav-link">
-                      Tutorials
+                    {t('Tutorials')} 
                     </NavLink>
                   </li>
 
 
            <li className="nav-item nv">
                     <NavLink to="/contact" className="nav-link">
-                      Contact 
+                    {t('Contact')}  
                     </NavLink>
                   </li>
 
